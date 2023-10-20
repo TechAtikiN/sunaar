@@ -6,7 +6,6 @@ import { ChevronDoubleLeftIcon, UserIcon } from '@heroicons/react/20/solid'
 // default imports
 import Image from 'next/image'
 import Navlink from './Navlink'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -26,6 +25,7 @@ const Sidebar = () => {
           </div>
           <h2 className={`${collapsed ? 'hidden' : 'block'} text-2xl font-semibold text-amber-600`}>Sunaar.</h2>
         </div>
+
         <ChevronDoubleLeftIcon
           onClick={() => setCollapsed(true)}
           className='h-6 w-6 text-gray-400 mr-3 hover:cursor-pointer'
@@ -35,22 +35,9 @@ const Sidebar = () => {
       {/* top links */}
       <ul className={`${!collapsed ? 'px-3 space-y-3 mt-5' : 'px-1 space-y-3 mt-5'}`}>
         {navLinks.map((link, index) => (
-          <Navlink collapsed={collapsed} link={link} index={index} />
+          <Navlink key={index} collapsed={collapsed} link={link} index={index} />
         ))}
       </ul>
-
-      {/* profile popover */}
-      {/* <Popover>
-        <PopoverTrigger>
-          <div className='flex justify-between items-center'>
-            <span className='h-7 w-7'><UserIcon /></span>
-            <p>Nikita Khabya</p>
-          </div>
-        </PopoverTrigger>
-        <PopoverContent
-          side='right'
-        >Place content for the popover here.</PopoverContent>
-      </Popover> */}
 
     </div>
   )
