@@ -1,8 +1,8 @@
 // default imports
-import LoginForm from '@/components/auth/LoginForm'
+import SignupForm from '@/components/auth/SignupForm'
 import Image from 'next/image'
 
-const Login = () => {
+const Signup = () => {
   return (
     <div className='grid grid-cols-2 bg-gradient-to-tr from-amber-50 via-orange-100 to-sky-300'>
       <div className='h-screen'>
@@ -21,11 +21,11 @@ const Login = () => {
         {/* <div className='w-full absolute -rotate-45 h-[30px] bottom-40 left-1/3 h- bg-sky-600/80 drop-shadow-2xl' /> */}
 
         <div className='py-8 text-gray-700 mx-auto h-[550px] my-12 glass-card shadow-lg max-w-[30rem] p-7'>
-          <LoginForm />
+          <SignupForm />
         </div>
       </div>
     </div>
   )
 }
 
-export default Login
+export default Signup
