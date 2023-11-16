@@ -22,4 +22,12 @@
     .form-input {
         @apply px-3 py-2 bg-transparent transition-transform duration-200 focus:outline-none border-b border-amber-100;
     }
+
+    .page {
+        @apply m-2 p-3
+    }
+
+    .section {
+        @apply bg-white rounded-md p-3 shadow-sm
+    }
 }
