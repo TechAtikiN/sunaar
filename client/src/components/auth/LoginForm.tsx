@@ -27,17 +27,17 @@ const LoginForm = () => {
     <div className='grid grid-cols-2 mt-10'>
       <div>
         <div className={montserrat.className}>
-          <h2 className='text-3xl font-semibold first-letter:text-orange-500 text-gray-300 first-letter:text-5xl first-letter:font-serif'>Sunaar</h2 >
+          <h2 className='text-3xl font-semibold first-letter:text-amber-700 text-gray-300 first-letter:text-5xl first-letter:font-serif'>Sunaar</h2 >
         </div>
 
         <div>
           {features.map((feature, index) => (
             <div key={index} className='flex items-start space-x-2 my-8'>
               <div>
-                <CheckCircleIcon className='w-5 h-5 mt-[2px] text-orange-400' />
+                <CheckCircleIcon className='w-5 h-5 mt-[2px] text-amber-400' />
               </div>
               <div className='group'>
-                <p className='font-semibold text-gray-200 group-hover:text-orange-600 group-hover:cursor-pointer'>{feature.title}</p>
+                <p className='font-semibold text-gray-200 group-hover:text-amber-700 group-hover:cursor-pointer'>{feature.title}</p>
                 <p className='text-xs text-gray-300'>{feature.description}</p>
               </div>
             </div>
@@ -46,7 +46,7 @@ const LoginForm = () => {
 
       </div>
 
-      <div className='text-gray-300 border-l py-4 border-orange-400'>
+      <div className='text-gray-300 border-l py-4 border-amber-400'>
         <p className='text-2xl font-semibold px-5'>Sign in to your account</p>
 
 
@@ -60,7 +60,7 @@ const LoginForm = () => {
           <div className='flex flex-col space-y-2'>
             <div className='flex justify-between items-center'>
               <label className='text-xs font-semibold' htmlFor='password'>Password</label>
-              <p className='text-xs text-orange-400 font-semibold hover:text-gray-200 hover:cursor-pointer'>Forgot your password?</p>
+              <p className='text-xs text-amber-400 font-semibold hover:text-gray-200 hover:cursor-pointer'>Forgot your password?</p>
             </div>
             <input type='password' className='form-input'
             />
@@ -68,7 +68,7 @@ const LoginForm = () => {
 
           <div className='w-full space-y-2 pt-3'>
             <button
-              className='w-full bg-orange-500 rounded-sm font-semibold hover:bg-orange-400 text-white px-3 py-2'
+              className='w-full bg-amber-700 rounded-sm font-semibold hover:bg-amber-400 text-white px-3 py-2'
             >
               Continue
             </button>
@@ -76,7 +76,7 @@ const LoginForm = () => {
               <p>Don&apos;t have an account?</p>&nbsp;
               <Link
                 href='/register'
-                className='font-semibold hover:cursor-pointer text-orange-400'
+                className='font-semibold hover:cursor-pointer text-amber-400'
               >
                 Sign up
               </Link>

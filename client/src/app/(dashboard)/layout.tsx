@@ -4,8 +4,8 @@ const DashboardLayout = ({ children }: {
   children: React.ReactNode
 }) => {
   return (
-    <div className='flex flex-row h-screen'>
-      <div className=''>
+    <div className='flex flex-row'>
+      <div className='h-screen'>
         <Sidebar />
       </div>
       <main className='flex flex-col w-full bg-gray-100'>
