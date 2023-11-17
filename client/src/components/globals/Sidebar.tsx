@@ -2,7 +2,7 @@
 // named imports
 import { useState } from 'react'
 import { navLinks } from '@/constants/navLinks'
-import { ChevronDoubleLeftIcon, ChevronLeftIcon, ChevronRightIcon, UserIcon } from '@heroicons/react/20/solid'
+import { ChevronDoubleLeftIcon, ChevronLeftIcon } from '@heroicons/react/20/solid'
 // default imports
 import Image from 'next/image'
 import Navlink from './Navlink'

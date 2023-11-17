@@ -30,4 +30,16 @@
     .section {
         @apply bg-white rounded-md p-3 shadow-sm
     }
+
+    .section-heading {
+        @apply text-lg font-semibold text-gray-700
+    }
+
+    .table-header {
+        @apply text-center text-gray-500 text-sm py-2
+    }
+
+    .table-data {
+        @apply text-center p-2 mt-1 border-b border-gray-100 mx-4 text-sm
+    }
 }

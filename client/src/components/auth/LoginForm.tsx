@@ -1,4 +1,7 @@
+'use client'
+
 // named imports
+import { useRouter } from 'next/navigation'
 import { CheckCircleIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Montserrat } from 'next/font/google'
 
@@ -23,6 +26,8 @@ const features = [
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 const LoginForm = () => {
+  const router = useRouter()
+
   return (
     <div className='grid grid-cols-2 mt-10'>
       <div>
@@ -68,6 +73,8 @@ const LoginForm = () => {
 
           <div className='w-full space-y-2 pt-3'>
             <button
+              type='button'
+              onClick={() => router.push('/home')}
               className='w-full bg-amber-600 rounded-sm font-semibold hover:bg-amber-500 text-white px-3 py-2'
             >
               Continue

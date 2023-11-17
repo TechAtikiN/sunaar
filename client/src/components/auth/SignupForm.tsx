@@ -49,7 +49,6 @@ const SignupForm = () => {
       <div className='text-gray-300 border-l py-4 border-amber-500'>
         <p className='text-2xl font-semibold px-5'>Create a new account</p>
 
-
         <form className='my-8 flex flex-col space-y-5 px-5'>
           <div className='flex flex-col space-y-2' >
             <label className='text-xs font-semibold' htmlFor="name">Full name</label>
