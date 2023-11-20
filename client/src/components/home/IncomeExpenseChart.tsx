@@ -1,67 +1,51 @@
 'use client'
-// named imports
-import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-
-const chartData = [
-  {
-    name: 'January',
-    income: 1000,
-    expenses: 1500,
-  },
-  {
-    name: 'February',
-    income: 1500,
-    expenses: 750,
-  },
-  {
-    name: 'March',
-    income: 2000,
-    expenses: 1200,
-  },
-  {
-    name: 'April',
-    income: 1500,
-    expenses: 1250,
-  },
-  {
-    name: 'May',
-    income: 2000,
-    expenses: 1500,
-  },
-  {
-    name: 'June',
-    income: 2500,
-    expenses: 1750,
-  },
-  {
-    name: 'July',
-    income: 2000,
-    expenses: 1500,
-  }
-]
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
 function IncomeExpenseChart() {
+  const options = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: null
+    },
+    colors: ['#87C4FF', '#39A7FF'],
+    xAxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Amount (in ₹)'
+      },
+      stackLabels: {
+        enabled: true
+      }
+    },
+    // tooltip: {
+    //   headerFormat: '<b>{point.x}</b><br/>',
+    //   pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    // },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+      }
+    },
+    series: [{
+      name: 'Income',
+      data: [11000, 20100, 13000, 40200, 13000, 20200, 11000]
+    }, {
+      name: 'Expense',
+      data: [5020, 21000, 11500, 6000, 3500, 5000, 1500]
+    },
+    ]
+  };
+
   return (
-    <LineChart
-      width={720}
-      height={230}
-      data={chartData}
-      margin={{
-        top: 20,
-        right: 10,
-        left: 0,
-        bottom: 15
-      }}
-      style={{
-        fontSize: '0.8rem'
-      }}
-    >
-      <Line type="monotone" dataKey="income" stroke="#29ADB2" strokeWidth={1} />
-      <Line type="monotone" dataKey="expenses" stroke="#7071E8" strokeWidth={1} />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-    </LineChart>
+    <div className='container'>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   )
 }
 
