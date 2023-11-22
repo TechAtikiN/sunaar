@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* add webkit scrllbar color as amber and width of 4px */
+@layer base{
+    ::-webkit-scrollbar {
+        width: 4px;
+        margin-top: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #fefefe;
+    }
+}
+
 @layer components {
     .glass-card {
         /* From https://css.glass */
@@ -28,7 +42,11 @@
     }
 
     .section {
-        @apply bg-white rounded-md p-3 shadow-sm
+        @apply bg-white rounded-lg p-3 shadow-sm
+    }
+
+    .heading {
+        @apply text-xl font-bold text-gray-700
     }
 
     .section-heading {
@@ -43,4 +61,15 @@
         @apply text-center p-2 mt-1 border-b border-gray-100 mx-4 text-sm
     }
 
+    .customer-table-header {
+        @apply px-2 text-center font-semibold text-gray-700 py-2
+    }
+
+    .customer-table-data {
+        @apply text-center px-2 py-1 text-sm text-gray-700 font-semibold
+    }
+
+    .dashboard-btn {
+        @apply px-3 py-2 text-xs font-semibold bg-[#191825] text-white
+    }
 }

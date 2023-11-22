@@ -1,5 +1,5 @@
 // named imports
-import { data } from '@/constants'
+import { data } from '@/constants/data'
 
 function KPIListing() {
   return (

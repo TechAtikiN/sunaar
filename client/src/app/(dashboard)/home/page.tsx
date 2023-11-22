@@ -11,16 +11,16 @@ import { CurrencyRupeeIcon } from '@heroicons/react/24/outline'
 // default imports
 import IncomeExpenseChart from '@/components/home/IncomeExpenseChart'
 import StatewiseDistribution from '@/components/home/StatewiseDistribution'
-import Link from 'next/link'
 import KPIListing from '@/components/home/KPIListing'
 import CommodityRates from '@/components/home/CommodityRates'
 import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
+import Link from 'next/link'
 
 export async function HomePage() {
 
   return (
-    <div className='page grid grid-cols-6 gap-5'>
+    <div className='page grid grid-cols-6 gap-5 h-screen'>
 
       {/* KPI listing */}
       <KPIListing />

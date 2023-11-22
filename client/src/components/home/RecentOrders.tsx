@@ -1,5 +1,5 @@
 // named imports
-import { ordersData } from '@/constants'
+import { ordersData } from '@/constants/data'
 
 // default imports
 import Link from 'next/link'

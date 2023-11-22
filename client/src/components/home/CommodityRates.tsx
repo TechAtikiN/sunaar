@@ -14,7 +14,7 @@ async function CommodityRates() {
             className='flex flex-col last:border-none border-r border-gray-400 px-5'
           >
             <p className='font-semibold'>{item.name}</p>
-            <div className='flex flex-col justify-center items-center space-y-2 mt-2'>
+            <div className='flex flex-col justify-center items-center space-y-2 mt-3'>
               <CubeIcon className={`h-8 w-10 ${item.name === 'Gold' ? 'text-yellow-500' : 'text-gray-400'
                 }`} />
               <div className='flex items-center text-gray-700 justify-center space-x-1'>

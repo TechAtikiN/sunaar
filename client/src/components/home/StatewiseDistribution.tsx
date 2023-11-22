@@ -68,7 +68,7 @@ function StatewiseDistribution() {
   };
 
   return (
-    <div className='container'>
+    <div className=''>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
