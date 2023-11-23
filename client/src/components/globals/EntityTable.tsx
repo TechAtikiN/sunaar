@@ -32,6 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import CustomerTableOptions from '../customers/CustomerTableOptions'
 
 interface Props {
   data: any
@@ -66,53 +67,12 @@ export default function EntityTable({ data, columns }: Props) {
 
   return (
     <div className='w-full'>
-      <div className='flex justify-between items-center py-4'>
-        {/* Filter and colums */}
-        <Input
-          placeholder='Filter emails'
-          value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('email')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm'
-        />
-        <div className='flex justify-end space-x-4'>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant='outline' className='ml-auto'>
-                Columns <ChevronDown className='ml-2 h-4 w-4' />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align='end'>
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className='capitalize'
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Button>
-            <DownloadIcon className='h-4 w-4' />
-          </Button>
-        </div>
-      </div>
+      <CustomerTableOptions table={table} />
 
       {/* Table */}
       <div className='rounded-md border'>
         <Table>
-          <TableHeader>
+          <TableHeader className=''>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -131,7 +91,7 @@ export default function EntityTable({ data, columns }: Props) {
             ))}
           </TableHeader>
 
-          <TableBody>
+          <TableBody className='bg-white'>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

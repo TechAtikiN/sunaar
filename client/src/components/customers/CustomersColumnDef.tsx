@@ -77,7 +77,17 @@ export const customerColumns: ColumnDef<Customer>[] = [
   },
   {
     accessorKey: 'revenue',
-    header: () => <div className='text-right'>Revenue</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Revenue
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue('revenue'))
 
@@ -86,7 +96,7 @@ export const customerColumns: ColumnDef<Customer>[] = [
         style: 'currency',
         currency: 'INR',
       }).format(amount)
-      return <div className='text-right font-medium'>{formatted}</div>
+      return <div className='text-left font-medium'>{formatted}</div>
     },
   },
   {

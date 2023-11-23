@@ -12,7 +12,7 @@ const data: Customer[] = [
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 700000,
+    revenue: 100000,
     averageOrderValue: 500
   },
   {
@@ -21,7 +21,7 @@ const data: Customer[] = [
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 600000,
+    revenue: 1600000,
     averageOrderValue: 500
   },
   {
@@ -30,7 +30,7 @@ const data: Customer[] = [
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',
-    revenue: 500000,
+    revenue: 50000,
     averageOrderValue: 500
   },
   {
@@ -39,7 +39,7 @@ const data: Customer[] = [
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 700000,
+    revenue: 702000,
     averageOrderValue: 500
   },
   {
@@ -48,7 +48,7 @@ const data: Customer[] = [
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 600000,
+    revenue: 61000,
     averageOrderValue: 500
   },
   {
@@ -57,7 +57,7 @@ const data: Customer[] = [
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',
-    revenue: 500000,
+    revenue: 500020,
     averageOrderValue: 500
   },
   {
@@ -66,7 +66,7 @@ const data: Customer[] = [
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 700000,
+    revenue: 720000,
     averageOrderValue: 500
   },
   {
@@ -75,7 +75,7 @@ const data: Customer[] = [
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
-    revenue: 600000,
+    revenue: 3400000,
     averageOrderValue: 500
   },
   {
@@ -123,12 +123,14 @@ export default function CustomersPage() {
     <div className='page h-screen'>
       {/* Header section */}
       <CustomerHeader />
+      <div className='section my-5'>
 
-      {/* Table section */}
-      <EntityTable
-        columns={columns}
-        data={data}
-      />
+        {/* Table section */}
+        <EntityTable
+          columns={columns}
+          data={data}
+        />
+      </div>
     </div>
   )
 }
