@@ -3,73 +3,75 @@
 @tailwind utilities;
 
 /* add webkit scrllbar color as amber and width of 4px */
-@layer base{
-    ::-webkit-scrollbar {
-        width: 4px;
-        margin-top: 5px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #ffffff;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #fefefe;
-    }
+@layer base {
+  ::-webkit-scrollbar {
+    width: 4px;
+    margin-top: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #fefefe;
+  }
 }
 
 @layer components {
-    .glass-card {
-        /* From https://css.glass */
-        /* background: white;
+  .glass-card {
+    /* From https://css.glass */
+    /* background: white;
         border-radius: 4px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(1px);
         -webkit-backdrop-filter: blur(1px);
         border: 1px solid rgba(255, 255, 255, 0.47); */
-        background: rgba(31, 9, 9, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(8.5px);
-        -webkit-backdrop-filter: blur(8.5px);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+    background: rgba(31, 9, 9, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
 
-    .form-input {
-        @apply px-3 py-2 bg-transparent transition-transform duration-200 focus:outline-none border-b border-amber-100;
-    }
+  .form-input {
+    @apply px-3 py-2 bg-transparent transition-transform duration-200 focus:outline-none border-b border-amber-100;
+  }
 
-    .page {
-        @apply m-2 p-3
-    }
+  .page {
+    @apply m-2 p-3
+  }
 
-    .section {
-        @apply bg-white rounded-lg p-3 shadow-sm
-    }
+  .section {
+    @apply bg-white rounded-lg p-3 shadow-sm
+  }
 
-    .heading {
-        @apply text-xl font-bold text-gray-700
-    }
+  .heading {
+    @apply text-xl font-bold text-gray-700
+  }
 
-    .section-heading {
-        @apply text-lg font-semibold text-gray-700
-    }
+  .section-heading {
+    @apply text-lg font-semibold text-gray-700
+  }
 
-    .table-header {
-        @apply text-center text-gray-500 text-sm py-2
-    }
+  .table-header {
+    @apply text-center text-gray-500 text-sm py-2
+  }
 
-    .table-data {
-        @apply text-center p-2 mt-1 border-b border-gray-100 mx-4 text-sm
-    }
+  .table-data {
+    @apply text-center p-2 mt-1 border-b border-gray-100 mx-4 text-sm
+  }
 
-    .customer-table-header {
-        @apply px-2 text-center font-semibold text-gray-700 py-2
-    }
+  .customer-table-header {
+    @apply px-2 text-center font-semibold text-gray-700 py-2
+  }
 
-    .customer-table-data {
-        @apply text-center px-2 py-1 text-sm text-gray-700 font-semibold
-    }
+  .customer-table-data {
+    @apply text-center px-2 py-1 text-sm text-gray-700 font-semibold
+  }
 
-    .dashboard-btn {
-        @apply px-3 py-2 text-xs font-semibold bg-[#191825] text-white
-    }
+  .dashboard-btn {
+    @apply px-3 py-2 text-xs font-semibold bg-[#191825] text-white
+  }
 }

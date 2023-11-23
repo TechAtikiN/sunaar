@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }: {
       <div className='col-span-2 bg-gray-100'>
         <Sidebar />
       </div>
-      <main className='col-span-10 flex flex-col max-h-screen bg-gray-100'>
+      <main className='col-span-10 flex flex-col'>
         {children}
       </main>
     </div>
