@@ -1,12 +1,5 @@
 // named imports
-import { getRates } from '../../../../actions/getRates'
-import {
-  CircleStackIcon,
-  CubeIcon, Square2StackIcon,
-  TableCellsIcon,
-  UsersIcon
-} from '@heroicons/react/20/solid'
-import { CurrencyRupeeIcon } from '@heroicons/react/24/outline'
+import { getRates } from '../../../actions/getRates'
 
 // default imports
 import IncomeExpenseChart from '@/components/home/IncomeExpenseChart'
@@ -15,12 +8,11 @@ import KPIListing from '@/components/home/KPIListing'
 import CommodityRates from '@/components/home/CommodityRates'
 import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
-import Link from 'next/link'
 
 export async function HomePage() {
 
   return (
-    <div className='page grid grid-cols-6 gap-5 h-screen'>
+    <div className='page grid grid-cols-6 gap-5'>
 
       {/* KPI listing */}
       <KPIListing />

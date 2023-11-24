@@ -178,3 +178,84 @@ export const customerListing = [
     averageOrderValue: 500
   }
 ]
+
+export const orderDetails = [
+  {
+    id: 'OD001',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'In Progress'
+  },
+  {
+    id: 'OD002',
+    date: '21/12/2020',
+    orderValue: '₹ 10,00,000',
+    orderWeight: '70 gm',
+    orderStatus: 'Active'
+  },
+  {
+    id: 'OD003',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Completed'
+  },
+  {
+    id: 'OD004',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Active'
+  },
+  {
+    id: 'OD005',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Completed'
+  },
+  {
+    id: 'OD006',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'In Progress'
+  },
+  {
+    id: 'OD007',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Completed'
+  },
+  {
+    id: 'OD006',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'In Progress'
+  },
+  {
+    id: 'OD007',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Completed'
+  },
+  {
+    id: 'OD006',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'In Progress'
+  },
+  {
+    id: 'OD007',
+    date: '12/12/2020',
+    orderValue: '₹ 1,00,000',
+    orderWeight: '10 gm',
+    orderStatus: 'Completed'
+  },
+]
+

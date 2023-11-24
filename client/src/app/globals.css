@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* add webkit scrllbar color as amber and width of 4px */
 @layer base {
   ::-webkit-scrollbar {
     width: 4px;
@@ -19,24 +18,14 @@
 }
 
 @layer components {
+  /* glassmorphism styles  */
   .glass-card {
-    /* From https://css.glass */
-    /* background: white;
-        border-radius: 4px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(1px);
-        -webkit-backdrop-filter: blur(1px);
-        border: 1px solid rgba(255, 255, 255, 0.47); */
     background: rgba(31, 9, 9, 0.2);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(8.5px);
     -webkit-backdrop-filter: blur(8.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .form-input {
-    @apply px-3 py-2 bg-transparent transition-transform duration-200 focus:outline-none border-b border-amber-100;
   }
 
   .page {
@@ -55,6 +44,14 @@
     @apply text-lg font-semibold text-gray-700
   }
 
+  .dashboard-btn {
+    @apply px-3 py-2 text-xs font-semibold bg-[#191825] text-white
+  }
+
+  .form-input {
+    @apply px-3 py-2 bg-transparent transition-transform duration-200 focus:outline-none border-b border-amber-100;
+  }
+
   .table-header {
     @apply text-center text-gray-500 text-sm py-2
   }
@@ -71,15 +68,11 @@
     @apply text-center px-2 py-1 text-sm text-gray-700 font-semibold
   }
 
-  .dashboard-btn {
-    @apply px-3 py-2 text-xs font-semibold bg-[#191825] text-white
-  }
-
   .customer-form-label {
     @apply text-sm font-semibold text-slate-700
   }
 
   .customer-form-input {
     @apply  px-3 py-1 focus:outline-none rounded-md focus:ring-1 focus:ring-amber-200 border border-gray-300 shadow-sm;
-}
+  }
 }

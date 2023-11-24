@@ -113,7 +113,6 @@ export default function AddCustomerPage() {
             </div>
           </form>
         </div>
-
       </div>
     </div>
   )

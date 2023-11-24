@@ -1,6 +1,6 @@
 // named imports
-import { ArrowRightOnRectangleIcon, ChartBarSquareIcon, CurrencyRupeeIcon, HomeIcon, UsersIcon } from '@heroicons/react/20/solid'
-import { Cog8ToothIcon } from '@heroicons/react/24/solid'
+import { ArrowRightOnRectangleIcon, ChartBarSquareIcon, CubeTransparentIcon, CurrencyRupeeIcon, HomeIcon, UsersIcon } from '@heroicons/react/20/solid'
+import { CircleStackIcon, Cog8ToothIcon } from '@heroicons/react/24/solid'
 
 export const navLinks = [
   {
@@ -9,14 +9,19 @@ export const navLinks = [
     icon: <HomeIcon />
   },
   {
-    name: 'Sales',
-    path: '/sales',
-    icon: <ChartBarSquareIcon />
+    name: 'Purchase Orders',
+    path: '/orders',
+    icon: <CircleStackIcon />
   },
   {
     name: 'Customers',
     path: '/customers',
     icon: <UsersIcon />
+  },
+  {
+    name: 'Product Catalogue',
+    path: '/product-catalogue',
+    icon: <CubeTransparentIcon />
   },
   {
     name: 'Finance Flow',

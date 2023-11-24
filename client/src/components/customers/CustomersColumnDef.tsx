@@ -11,6 +11,7 @@ import {
 } from '../ui/dropdown-menu'
 import { Checkbox } from '../ui/checkbox'
 import { ColumnDef } from '@tanstack/react-table'
+import Link from 'next/link'
 
 export const customerColumns: ColumnDef<Customer>[] = [
   {
@@ -121,7 +122,9 @@ export const customerColumns: ColumnDef<Customer>[] = [
               Copy Customer ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className='hover:cursor-pointer' href={`/customers/${Customer.id}`}>View details</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Edit details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

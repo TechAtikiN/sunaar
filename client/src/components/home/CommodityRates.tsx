@@ -1,5 +1,5 @@
 import { CubeIcon, CurrencyRupeeIcon } from "@heroicons/react/20/solid"
-import { getRates } from "../../../actions/getRates"
+import { getRates } from "../../actions/getRates"
 
 async function CommodityRates() {
   // const commodities = await getRates()
