@@ -19,14 +19,14 @@ export const navLinks = [
     icon: <UsersIcon />
   },
   {
-    name: 'Product Catalogue',
-    path: '/product-catalogue',
-    icon: <CubeTransparentIcon />
-  },
-  {
     name: 'Finance Flow',
     path: '/finance-flow',
     icon: <CurrencyRupeeIcon />
+  },
+  {
+    name: 'Product Catalogue',
+    path: '/product-catalogue',
+    icon: <CubeTransparentIcon />
   },
   {
     name: 'Settings',

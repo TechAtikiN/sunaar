@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function PurchaseOrdersHeader() {
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between items-center'>
       <h2 className='heading'>Purchase Orders</h2>
       <div className='flex space-x-5'>
         <Link

@@ -23,44 +23,44 @@ export default function AddCustomerPage() {
 
                 <div className='grid grid-cols-6 gap-x-4 gap-y-5 p-5 w-3/4 '>
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='firstName'>First name</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='firstName'>First name</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='lastName'>Last name</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='lastName'>Last name</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='email'>Email Address</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='email'>Email Address</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='phone'>Phone No.</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='phone'>Phone No.</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-2 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='city'>City</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='city'>City</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-2 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='state'>State</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='state'>State</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-2 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='postalCode'>Postal Code</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='postalCode'>Postal Code</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-6 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='address'>Address</label>
+                    <label className='dashboard-form-label' htmlFor='address'>Address</label>
                     <textarea
-                      rows={2} className='customer-form-input'
+                      rows={2} className='dashboard-form-input'
                     ></textarea>
                   </div>
                 </div>
@@ -79,29 +79,29 @@ export default function AddCustomerPage() {
 
                 <div className='grid grid-cols-6 gap-x-4 gap-y-5 p-5 w-3/4 '>
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='companyName'>Company name</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='companyName'>Company name</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='companyEmail'>Company Email Address</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='companyEmail'>Company Email Address</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='companyContact'>Contact No.</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='companyContact'>Contact No.</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-3 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='city'>Remark</label>
-                    <input type='text' className='customer-form-input' />
+                    <label className='dashboard-form-label' htmlFor='city'>Remark</label>
+                    <input type='text' className='dashboard-form-input' />
                   </div>
 
                   <div className='col-span-6 flex flex-col space-y-2'>
-                    <label className='customer-form-label' htmlFor='companyAddress'>Company Address</label>
+                    <label className='dashboard-form-label' htmlFor='companyAddress'>Company Address</label>
                     <textarea
-                      rows={2} className='customer-form-input'
+                      rows={2} className='dashboard-form-input'
                     ></textarea>
                   </div>
                 </div>

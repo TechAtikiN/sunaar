@@ -14,7 +14,7 @@ export default function CustomerTableOptions({ table }: { table: any }) {
     <div className='flex justify-between items-center py-4'>
       {/* Filter and colums */}
       <Input
-        placeholder='Filter using Names'
+        placeholder='Filter using name'
         value={(table.getColumn('customerName')?.getFilterValue() as string) ?? ''}
         onChange={(event) =>
           table.getColumn('customerName')?.setFilterValue(event.target.value)

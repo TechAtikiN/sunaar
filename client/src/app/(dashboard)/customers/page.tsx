@@ -120,7 +120,7 @@ const columns = customerColumns
 
 export default function CustomersPage() {
   return (
-    <div className='page h-screen'>
+    <div className='page'>
       {/* Header section */}
       <CustomerHeader />
       <div className='section my-5'>
