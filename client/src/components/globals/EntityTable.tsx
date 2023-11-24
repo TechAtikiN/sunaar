@@ -1,7 +1,7 @@
 'use client'
 
+// named imports
 import { useState } from 'react'
-import { ChevronDown, DownloadIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   ColumnFiltersState,
@@ -32,6 +32,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+
+// default imports
 import CustomerTableOptions from '../customers/CustomerTableOptions'
 
 interface Props {

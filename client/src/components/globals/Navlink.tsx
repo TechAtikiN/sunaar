@@ -13,7 +13,7 @@ interface Props {
 
 const Navlink = ({ link, index }: Props) => {
   const pathname = usePathname()
-
+  console.log(pathname)
   return (
     <li
       key={index}
@@ -25,8 +25,8 @@ const Navlink = ({ link, index }: Props) => {
       </span>
       <Link
         href={link.path}
-        className={`text-gray-300 text-sm group-hover:scale-105 hover:text-amber-600
-          ${pathname.includes(link.path) ? 'text-amber-600' : ''}
+        className={`text-sm group-hover:scale-105 hover:text-amber-600
+          ${pathname.includes(link.path) ? 'text-amber-600 font-semibold' : 'text-gray-300'}
         `}>{link.name}
       </Link>
     </li>

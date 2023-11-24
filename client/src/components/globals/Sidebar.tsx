@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`col-span-2 fixed flex flex-col overflow-hidden h-full rounded-r-3xl shadow-xl p-4 bg-[#191825] transition-all duration-100 ease-in-out`}
+      className={`col-span-2 fixed flex flex-col overflow-hidden h-full shadow-xl p-4 bg-[#191825] transition-all duration-100 ease-in-out`}
     >
       {/* logo */}
       <div className={`flex items-center space-x-2 mx-9`}>

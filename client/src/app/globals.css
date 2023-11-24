@@ -37,7 +37,7 @@
   }
 
   .heading {
-    @apply text-xl font-bold text-gray-700
+    @apply text-2xl font-bold text-gray-700
   }
 
   .section-heading {

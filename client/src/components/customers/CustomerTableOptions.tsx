@@ -15,9 +15,9 @@ export default function CustomerTableOptions({ table }: { table: any }) {
       {/* Filter and colums */}
       <Input
         placeholder='Filter using Names'
-        value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+        value={(table.getColumn('customerName')?.getFilterValue() as string) ?? ''}
         onChange={(event) =>
-          table.getColumn('name')?.setFilterValue(event.target.value)
+          table.getColumn('customerName')?.setFilterValue(event.target.value)
         }
         className='max-w-sm'
       />

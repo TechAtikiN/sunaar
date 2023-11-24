@@ -8,7 +8,7 @@ import CustomerHeader from '@/components/customers/CustomerHeader'
 const data: Customer[] = [
   {
     id: 'C001',
-    name: 'R. K. Sharma',
+    customerName: 'R. K. Sharma',
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -17,7 +17,7 @@ const data: Customer[] = [
   },
   {
     id: 'C002',
-    name: 'Anil Kumar',
+    customerName: 'Anil Kumar',
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -26,7 +26,7 @@ const data: Customer[] = [
   },
   {
     id: 'C003',
-    name: 'Piyush Jain',
+    customerName: 'Piyush Jain',
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',
@@ -35,7 +35,7 @@ const data: Customer[] = [
   },
   {
     id: 'C004',
-    name: 'R. K. Sharma',
+    customerName: 'R. K. Sharma',
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -44,7 +44,7 @@ const data: Customer[] = [
   },
   {
     id: 'C005',
-    name: 'Anil Kumar',
+    customerName: 'Anil Kumar',
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -53,7 +53,7 @@ const data: Customer[] = [
   },
   {
     id: 'C006',
-    name: 'Piyush Jain',
+    customerName: 'Piyush Jain',
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',
@@ -62,7 +62,7 @@ const data: Customer[] = [
   },
   {
     id: 'C007',
-    name: 'R. K. Sharma',
+    customerName: 'R. K. Sharma',
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -71,7 +71,7 @@ const data: Customer[] = [
   },
   {
     id: 'C008',
-    name: 'Anil Kumar',
+    customerName: 'Anil Kumar',
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -80,7 +80,7 @@ const data: Customer[] = [
   },
   {
     id: 'C009',
-    name: 'Piyush Jain',
+    customerName: 'Piyush Jain',
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',
@@ -89,7 +89,7 @@ const data: Customer[] = [
   },
   {
     id: 'C010',
-    name: 'R. K. Sharma',
+    customerName: 'R. K. Sharma',
     email: 'rksharma@gmial.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -98,7 +98,7 @@ const data: Customer[] = [
   },
   {
     id: 'C011',
-    name: 'Anil Kumar',
+    customerName: 'Anil Kumar',
     email: 'anil@gmail.com',
     phone: '9876543210',
     location: 'Mumbai, Maharashtra',
@@ -107,7 +107,7 @@ const data: Customer[] = [
   },
   {
     id: 'C012',
-    name: 'Piyush Jain',
+    customerName: 'Piyush Jain',
     email: 'pjain@gmail.com',
     phone: '9876543210',
     location: 'Indore, Madhya Pradesh',

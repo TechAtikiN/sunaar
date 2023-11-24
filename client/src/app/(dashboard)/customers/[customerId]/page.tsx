@@ -31,7 +31,7 @@ export default function CustomerDetails({ params }: { params: { customerId: stri
       </h2>
 
       {/* main section */}
-      <div className='section my-3'>
+      <div className='section my-5'>
         <div className='flex space-x-5'>
           {/* order history table */}
           <div className='p-4 border border-gray-300 rounded-md w-3/5'>
@@ -42,6 +42,7 @@ export default function CustomerDetails({ params }: { params: { customerId: stri
               </div>
             </div>
           </div>
+
           {/* customer details */}
           <div className='p-4 w-2/5 border border-gray-300 rounded-md bg-slate-100/50'>
             <div>

@@ -1,4 +1,5 @@
 'use client'
+
 // named imports
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
 import { Button } from '../ui/button'
@@ -16,7 +17,7 @@ import { ColumnDef } from '@tanstack/react-table'
 // default imports
 import Link from 'next/link'
 
-export const customerColumns: ColumnDef<Customer>[] = [
+export const orderColumns: ColumnDef<Order>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -37,6 +38,20 @@ export const customerColumns: ColumnDef<Customer>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: 'id',
+    header: 'Order ID',
+    cell: ({ row }) => (
+      <div className='capitalize'>{row.getValue('id')}</div>
+    ),
+  },
+  {
+    accessorKey: 'customerId',
+    header: 'Customer ID',
+    cell: ({ row }) => (
+      <div className='capitalize'>{row.getValue('customerId')}</div>
+    ),
+  },
+  {
     accessorKey: 'customerName',
     header: 'Customer Name',
     cell: ({ row }) => (
@@ -44,70 +59,98 @@ export const customerColumns: ColumnDef<Customer>[] = [
     ),
   },
   {
-    accessorKey: 'email',
+    accessorKey: 'date',
     header: ({ column }) => {
       return (
         <Button
           variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          onClick={() => {
+            // sort by date 
+            column.toggleSorting(column.getIsSorted() === 'asc')
+          }}
         >
-          Email
+          Date
           <ArrowUpDown className='ml-2 h-4 w-4' />
         </Button>
       )
     },
-    cell: ({ row }) => <div className='lowercase'>{row.getValue('email')}</div>,
-  },
-  {
-    accessorKey: 'phone',
-    header: 'Phone No.',
     cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('phone')}</div>
+      <div className='capitalize'>{row.getValue('date')}</div>
     ),
   },
   {
-    accessorKey: 'location',
-    header: 'Location',
-    cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('location')}</div>
-    ),
-  },
-  {
-    accessorKey: 'averageOrderValue',
-    header: 'Avg. Order Val.',
-    cell: ({ row }) => (
-      <div className='capitalize'>{row.getValue('averageOrderValue')}</div>
-    ),
-  },
-  {
-    accessorKey: 'revenue',
+    accessorKey: 'orderValue',
     header: ({ column }) => {
       return (
         <Button
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          Revenue
+          Order Value
           <ArrowUpDown className='ml-2 h-4 w-4' />
         </Button>
       )
     },
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('revenue'))
+      const amount = parseFloat(row.getValue('orderValue'))
 
       // Format the amount as a RUPEE amount
       const formatted = new Intl.NumberFormat('en-IN', {
         style: 'currency',
         currency: 'INR',
       }).format(amount)
-      return <div className='text-left font-medium'>{formatted}</div>
+      return <div className='ml-6 font-medium'>{formatted}</div>
     },
+  },
+  {
+    accessorKey: 'orderWeight',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Order Weight
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue('orderWeight'))
+
+      return <div className='ml-6 font-medium'>{row.getValue('orderWeight')}gm</div>
+    },
+  },
+  {
+    accessorKey: 'status',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+        >
+          Status
+          <ArrowUpDown className='ml-2 h-4 w-4' />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const Order = row.original
+
+      return (
+        <div className='capitalize'>
+          <span className={`capitalize px-2 py-1 rounded-full text-xs font-semibold ${Order.status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : Order.status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+            {row.getValue('status')}
+          </span>
+        </div>
+      )
+    }
   },
   {
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const Customer = row.original
+      const Order = row.original
 
       return (
         <DropdownMenu>
@@ -120,13 +163,13 @@ export const customerColumns: ColumnDef<Customer>[] = [
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(Customer.id)}
+              onClick={() => navigator.clipboard.writeText(Order.id)}
             >
-              Copy Customer ID
+              Copy Order ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link className='hover:cursor-pointer' href={`/customers/${Customer.id}`}>View details</Link>
+              <Link className='hover:cursor-pointer' href={`/orders/${Order.id}`}>View details</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>Edit details</DropdownMenuItem>
           </DropdownMenuContent>
