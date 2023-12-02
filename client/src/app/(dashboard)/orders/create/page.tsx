@@ -1,9 +1,9 @@
 'use client'
+
 // named imports
 import { Button } from '@/components/ui/button'
+import { handleCurrencyFormat } from '@/lib/utils'
 import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
-
-// const products = []
 
 const products = [
   {
@@ -66,10 +66,7 @@ export default function CreateOrderPage() {
   const orderValue = products
     .reduce(
       (acc, product) => acc + (6000 * product.weight * product.quantity), 0)
-  const formattedOrderValue = new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-  }).format(orderValue)
+  const formattedOrderValue = handleCurrencyFormat(orderValue)
 
   return (
     <div className='page'>

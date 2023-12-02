@@ -16,6 +16,7 @@ import { ColumnDef } from '@tanstack/react-table'
 
 // default imports
 import Link from 'next/link'
+import { handleCurrencyFormat } from '@/lib/utils'
 
 export const orderColumns: ColumnDef<Order>[] = [
   {
@@ -95,10 +96,7 @@ export const orderColumns: ColumnDef<Order>[] = [
       const amount = parseFloat(row.getValue('orderValue'))
 
       // Format the amount as a RUPEE amount
-      const formatted = new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-      }).format(amount)
+      const formatted = handleCurrencyFormat(amount)
       return <div className='ml-6 font-medium'>{formatted}</div>
     },
   },

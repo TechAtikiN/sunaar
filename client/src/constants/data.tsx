@@ -1,4 +1,10 @@
-import { CircleStackIcon, Square2StackIcon, TableCellsIcon, UsersIcon } from "@heroicons/react/20/solid"
+// named imports
+import {
+  CircleStackIcon,
+  Square2StackIcon,
+  TableCellsIcon,
+  UsersIcon
+} from '@heroicons/react/20/solid'
 
 export const data = [
   {
@@ -67,6 +73,23 @@ export const ordersData = [
     customer: 'Tushar Jain'
   }
 ]
+
+export const orderDescription = {
+  status: 'In Progress',
+  orderValue: 1000000,
+  orderWeight: 100,
+  date: 'Mon, July 22, 2023',
+  paymentMethod: 'NEFT',
+  companyName: 'R.K Jewellers',
+  contact: '022-12345678',
+  customerDetails: {
+    id: 'C001',
+    name: 'Ram Kumar Sharma',
+    email: 'rk@gmail.com',
+    phone: '9876543210',
+    address: 'Lorem ipsum dolor sit amet '
+  }
+}
 
 // export const customerListing = [
 //   {
@@ -259,3 +282,77 @@ export const orderDetails = [
   },
 ]
 
+export const productListing = [
+  {
+    name: 'Gents Ring',
+    category: 'Ring',
+    rate: 50000,
+    quantity: 5,
+    id: 'P001',
+    weight: 10
+  },
+  {
+    name: 'Gold Chain',
+    category: 'Chain',
+    rate: 100000,
+    quantity: 5,
+    id: 'P002',
+    weight: 10
+  },
+  {
+    name: 'Gents Ring',
+    category: 'Ring',
+    rate: 50000,
+    quantity: 5,
+    id: 'P003',
+    weight: 10
+  },
+  {
+    name: 'Ladies Ring',
+    category: 'Ring',
+    rate: 30000,
+    quantity: 5,
+    id: 'P008',
+    weight: 10
+  },
+  {
+    name: 'Gold Chain',
+    category: 'Chain',
+    rate: 100000,
+    quantity: 5,
+    id: 'P011',
+    weight: 10
+  },
+  {
+    name: 'Gents Ring',
+    category: 'Ring',
+    rate: 50000,
+    quantity: 5,
+    id: 'P020',
+    weight: 10
+  },
+  {
+    name: 'Ladies Ring',
+    category: 'Ring',
+    rate: 30000,
+    quantity: 5,
+    id: 'P021',
+    weight: 10
+  },
+  {
+    name: 'Gold Chain',
+    category: 'Chain',
+    rate: 100000,
+    quantity: 5,
+    id: 'P022',
+    weight: 10
+  },
+  {
+    name: 'Gents Ring',
+    category: 'Ring',
+    rate: 50000,
+    quantity: 5,
+    id: 'P023',
+    weight: 10
+  }
+]

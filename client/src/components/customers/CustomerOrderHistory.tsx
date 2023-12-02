@@ -1,9 +1,12 @@
 'use client'
+
+// named imports
 import { useRouter } from 'next/navigation'
 import { orderDetails } from '@/constants/data'
 
 export default function CustomerOrderHistory() {
   const router = useRouter()
+
   return (
     <table className='w-full'>
       <thead className='border-b py-2 border-gray-300'>
