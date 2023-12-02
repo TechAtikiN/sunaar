@@ -10,4 +10,5 @@ export const handleCurrencyFormat = (value: number) => {
       style: 'currency',
       currency: 'INR',
     }).format(value)
-  }
+}
+  
