@@ -13,7 +13,7 @@ interface Props {
 
 const Navlink = ({ link, index }: Props) => {
   const pathname = usePathname()
-  console.log(pathname)
+
   return (
     <li
       key={index}

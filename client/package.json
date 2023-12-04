@@ -2,6 +2,7 @@
     "name": "sunaar",
     "version": "0.1.0",
     "private": true,
+    "proxy": "http://localhost:8000/",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -16,8 +17,10 @@
         "@radix-ui/react-slot": "^1.0.2",
         "@radix-ui/react-tooltip": "^1.0.7",
         "@tanstack/react-table": "^8.10.7",
+        "axios": "^1.6.2",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
+        "firebase": "^10.7.0",
         "highcharts": "^11.2.0",
         "highcharts-react-official": "^3.2.1",
         "lucide-react": "^0.292.0",
@@ -25,8 +28,11 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.47.0",
+        "react-intersection-observer": "^9.5.3",
+        "react-query": "^3.39.3",
         "tailwind-merge": "^2.0.0",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
         "@types/node": "^20",

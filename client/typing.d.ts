@@ -24,3 +24,10 @@ type Order = {
   // invoice: File
   status: string
 }
+
+type Product = {
+  id: number
+  category: string
+  weight: number
+  image: string
+}
