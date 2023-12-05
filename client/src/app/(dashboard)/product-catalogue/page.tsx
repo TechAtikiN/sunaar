@@ -1,12 +1,25 @@
 // named imports
 import ProductsListing from '@/components/product-catalogue/ProductsListing'
-export default async function ProductCatalogue() {
+import SearchBar from '@/components/product-catalogue/SearchBar'
+export default async function ProductCatalogue({
+  searchParams
+}: {
+  searchParams: { category: string, cursor: string }
+}) {
+  let { category } = searchParams
+  if (category) {
+    category = category.charAt(0).toUpperCase() + category.slice(1)
+  }
+
   return (
     <div className='page'>
-      <h2 className='heading'>Products Catalogue</h2>
+      <div className='flex justify-between'>
+        <h2 className='heading'>Products Catalogue</h2>
+        <SearchBar />
+      </div>
       {/* <UploadProduct /> */}
       <div className='section p-5 my-4'>
-        <ProductsListing />
+        <ProductsListing category={category} />
       </div>
     </div>
   )

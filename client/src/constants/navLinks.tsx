@@ -18,18 +18,18 @@ export const navLinks = [
     path: '/customers',
     icon: <UsersIcon />
   },
-  {
-    name: 'Finance Flow',
-    path: '/finance-flow',
-    icon: <CurrencyRupeeIcon />
-  },
+  // {
+  //   name: 'Finance Flow',
+  //   path: '/finance-flow',
+  //   icon: <CurrencyRupeeIcon />
+  // },
   {
     name: 'Product Catalogue',
     path: '/product-catalogue',
     icon: <CubeTransparentIcon />
   },
   {
-    name: 'Settings',
+    name: 'Account Settings',
     path: '/settings',
     icon: <Cog8ToothIcon />
   },

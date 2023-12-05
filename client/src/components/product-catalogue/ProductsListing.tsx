@@ -9,7 +9,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import LoadingSpinner from '../globals/LoadingSpinner'
 
-export default function ProductsListing() {
+export default function ProductsListing({ category }: { category: string }) {
   const { ref, inView } = useInView({ threshold: 0 })
 
   // fetch products on page load as per the cursor
@@ -18,7 +18,9 @@ export default function ProductsListing() {
     isFetchingNextPage, fetchNextPage, hasNextPage
   } = useInfiniteQuery('products', async ({ pageParam = '' }) => {
     await new Promise((resolve) => setTimeout(resolve, 1000))
-    const response = await axios.get(`http://localhost:8000/products?cursor=${pageParam}`)
+    const response = await axios.get(
+      category ? `http://localhost:8000/products?category=${category}cursor=${pageParam}&` : `http://localhost:8000/products?cursor=${pageParam}`
+    )
     return response.data
   }, { getNextPageParam: (lastPage) => lastPage.nextId ?? false })
 
