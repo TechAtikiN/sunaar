@@ -51,11 +51,19 @@ func main() {
 
 	// register the customer routes
 	micro.Route("/customers", func(router fiber.Router) {
-		router.Post("/", middleware.DeserializeUser, controllers.CreateCustomer)
 		router.Get("/", middleware.DeserializeUser, controllers.GetCustomers)
 		router.Get("/:id", middleware.DeserializeUser, controllers.GetCustomer)
+		router.Post("/", middleware.DeserializeUser, controllers.CreateCustomer)
 		router.Put("/:id", middleware.DeserializeUser, controllers.UpdateCustomer)
 		router.Delete("/:id", middleware.DeserializeUser, controllers.DeleteCustomer)
+	})
+
+	// register the purchase-order routes
+	micro.Route("/orders", func(router fiber.Router) {
+		router.Get("/", middleware.DeserializeUser, controllers.GetOrders)
+		router.Get("/:id", middleware.DeserializeUser, controllers.GetOrder)
+		router.Post("/", middleware.DeserializeUser, controllers.CreateOrder)
+		router.Put("/:id", middleware.DeserializeUser, controllers.UpdateStatus)
 	})
 
 	micro.Get("/users/me", middleware.DeserializeUser, controllers.GetUser)
