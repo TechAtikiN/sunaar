@@ -1,5 +1,6 @@
 // named imports
 import { customerColumns } from '@/components/customers/CustomersColumnDef'
+import { getAllCustomers } from '@/actions/customers'
 
 // default imports
 import EntityTable from '@/components/globals/EntityTable'
@@ -118,7 +119,10 @@ const data: Customer[] = [
 
 const columns = customerColumns
 
-export default function CustomersPage() {
+export default async function CustomersPage() {
+  const customers = await getAllCustomers()
+  console.log(customers)
+
   return (
     <div className='page'>
       {/* Header section */}

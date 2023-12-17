@@ -57,7 +57,6 @@ export default function OrderDetails({ params }: { params: { orderId: string } }
                 <p className='text-sm text-slate-600'><span className='font-bold'>Contact</span>: {orderDescription.contact}</p>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Order Weight.</span>: {orderDescription.orderWeight}</p>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Order Value</span>: {orderDescription.orderValue}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Payment Methof</span>: {orderDescription.paymentMethod}</p>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Order Status</span>: {orderDescription.status}</p>
               </div>
             </div>
@@ -69,7 +68,6 @@ export default function OrderDetails({ params }: { params: { orderId: string } }
                 <p className='text-sm text-slate-600'><span className='font-bold'>Customer ID</span>: {orderDescription.customerDetails.id}</p>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {orderDescription.customerDetails.email}</p>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Contact No.</span>: {orderDescription.customerDetails.phone}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Address</span>: {orderDescription.customerDetails.address}</p>
               </div>
             </div>
           </div>

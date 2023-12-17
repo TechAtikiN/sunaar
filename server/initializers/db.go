@@ -5,10 +5,11 @@ import (
 	"log"
 	"os"
 
+	"sunaar/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"sunaar/models"
 )
 
 var DB *gorm.DB
@@ -29,9 +30,11 @@ func ConnectDB(config *Config) {
 	DB.Logger = logger.Default.LogMode(logger.Info)
 
 	log.Println("Running Migrations")
-	err = DB.AutoMigrate(&models.User{})
+
+	// run migration for user and customer table and handle error if any
+	err = DB.AutoMigrate(&models.User{}, &models.Customer{}, &models.Order{}, &models.Product{})
 	if err != nil {
-		log.Fatal("Migration Failed:  \n", err.Error())
+		log.Fatal("Failed to run migration \n", err.Error())
 		os.Exit(1)
 	}
 

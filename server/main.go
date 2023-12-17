@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"sunaar/controllers"
 	"sunaar/initializers"
 	"sunaar/middleware"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 // init is invoked before main()
@@ -35,17 +36,26 @@ func main() {
 
 	// register the CORS middleware
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:3000",
+		AllowOrigins:     "*",
 		AllowHeaders:     "Origin, Content-Type, Accept",
 		AllowMethods:     "GET, POST, PUT, DELETE,",
 		AllowCredentials: true,
 	}))
 
-	// register the routes
+	// register the auth routes
 	micro.Route("/auth", func(router fiber.Router) {
 		router.Post("/register", controllers.SignUpUser)
 		router.Post("/login", controllers.SignInUser)
 		router.Get("/logout", middleware.DeserializeUser, controllers.LogoutUser)
+	})
+
+	// register the customer routes
+	micro.Route("/customers", func(router fiber.Router) {
+		router.Post("/", middleware.DeserializeUser, controllers.CreateCustomer)
+		router.Get("/", middleware.DeserializeUser, controllers.GetCustomers)
+		router.Get("/:id", middleware.DeserializeUser, controllers.GetCustomer)
+		router.Put("/:id", middleware.DeserializeUser, controllers.UpdateCustomer)
+		router.Delete("/:id", middleware.DeserializeUser, controllers.DeleteCustomer)
 	})
 
 	micro.Get("/users/me", middleware.DeserializeUser, controllers.GetUser)

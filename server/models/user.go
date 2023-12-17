@@ -1,9 +1,10 @@
 package models
 
 import (
+	"time"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
-	"time"
 )
 
 // User is used to model the user table inside our database
@@ -22,7 +23,7 @@ type SignUpInput struct {
 	Name            string `json:"name" validate:"required"`
 	Email           string `json:"email" validate:"required"`
 	Password        string `json:"password" validate:"required"`
-	PasswordConfirm string `json:"passwordConfirm" validate:"required`
+	PasswordConfirm string `json:"passwordConfirm" validate:"required"`
 }
 
 // structure for signin request body
