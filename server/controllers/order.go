@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"sunaar/initializers"
 	"sunaar/models"
 
@@ -155,11 +156,20 @@ func UpdateStatus(c *fiber.Ctx) error {
 		})
 	}
 
+	fmt.Println("order status", payload.Status)
+
 	// validate request body
-	errors := models.ValidateStuct(payload)
+	errors := models.ValidateOrderUpdateInput(payload)
 	if errors != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"status": "fail", "message": errors,
+		})
+	}
+
+	// check if the order status is valid
+	if payload.Status != models.Active && payload.Status != models.InProgress && payload.Status != models.Cancelled && payload.Status != models.Completed {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": "invalid order status",
 		})
 	}
 
