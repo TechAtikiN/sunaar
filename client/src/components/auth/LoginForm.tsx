@@ -2,8 +2,11 @@
 
 // named imports
 import { useRouter } from 'next/navigation'
-import { CheckCircleIcon, CheckIcon } from '@heroicons/react/20/solid'
+import { useToast } from '../ui/use-toast'
+import { login } from '@/actions/auth'
+import { CheckCircleIcon } from '@heroicons/react/20/solid'
 import { Montserrat } from 'next/font/google'
+import { useUserStore } from '@/store/useUserStore'
 
 // default imports
 import Link from 'next/link'
@@ -26,7 +29,39 @@ const features = [
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 const LoginForm = () => {
+  const [token, setToken] = useUserStore((state) => [state.token, state.setToken])
+  const { toast } = useToast()
   const router = useRouter()
+
+  //check if user is logged in
+  if (token) {
+    router.push('/home')
+  }
+
+  const loginUser = async (formData: FormData) => {
+    try {
+      const user = await login(formData)
+      if (user) {
+        setToken(user)
+        toast({
+          title: "Successfully logged in.",
+          description: "Welcome back to Sunaar!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        })
+        router.push('/home')
+      }
+    } catch (error) {
+      toast({
+        title: "An error occurred!",
+        description: "Unable to log you in!",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  }
 
   return (
     <div className='grid grid-cols-2 mt-10'>
@@ -35,6 +70,7 @@ const LoginForm = () => {
           <h2 className='text-3xl font-semibold first-letter:text-amber-600 text-gray-300 first-letter:text-5xl first-letter:font-serif'>Sunaar</h2 >
         </div>
 
+        {/* Features Description */}
         <div>
           {features.map((feature, index) => (
             <div key={index} className='flex items-start space-x-2 my-8'>
@@ -55,10 +91,10 @@ const LoginForm = () => {
         <p className='text-2xl font-semibold px-5'>Sign in to your account</p>
 
 
-        <form className='my-8 flex flex-col space-y-5 px-5'>
+        <form action={loginUser} method='POST' className='my-8 flex flex-col space-y-5 px-5'>
           <div className='flex flex-col space-y-2'>
             <label className='text-xs font-semibold' htmlFor='email'>Email</label>
-            <input type='email' className='form-input'
+            <input required name='email' type='email' className='form-input'
             />
           </div>
 
@@ -67,14 +103,13 @@ const LoginForm = () => {
               <label className='text-xs font-semibold' htmlFor='password'>Password</label>
               <p className='text-xs text-amber-500 font-semibold hover:text-gray-200 hover:cursor-pointer'>Forgot your password?</p>
             </div>
-            <input type='password' className='form-input'
+            <input required name='password' type='password' className='form-input'
             />
           </div>
 
           <div className='w-full space-y-2 pt-3'>
             <button
-              type='button'
-              onClick={() => router.push('/home')}
+              type='submit'
               className='w-full bg-amber-600 rounded-sm font-semibold hover:bg-amber-500 text-white px-3 py-2'
             >
               Continue

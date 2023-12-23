@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"strings"
 	"sunaar/initializers"
 	"sunaar/models"
@@ -65,15 +66,26 @@ func CreateCustomer(c *fiber.Ctx) error {
 
 // Get all customers //
 func GetCustomers(c *fiber.Ctx) error {
+	// get the request query
+	query := c.Query("query")
+
 	// get all the customer from the database
 	var customers []models.Customer
 
-	result := initializers.DB.Find(&customers)
+	// set initial value of results
+
+	// check if there is a query
+	if query != "" {
+		initializers.DB.Where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR company_name LIKE ?",
+			fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query)).Find(&customers)
+	} else {
+		initializers.DB.Find(&customers)
+	}
 
 	// check if there was an error getting the customers from the database
-	if result.Error != nil {
+	if err := initializers.DB.Error; err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"status": "fail", "message": result.Error.Error(),
+			"status": "fail", "message": err.Error(),
 		})
 	}
 

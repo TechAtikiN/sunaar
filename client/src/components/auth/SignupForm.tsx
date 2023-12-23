@@ -1,9 +1,15 @@
+'use client'
 // named imports
-import { CheckCircleIcon, CheckIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useToast } from '../ui/use-toast'
 import { Montserrat } from 'next/font/google'
+import { register } from '@/actions/auth'
+import { CheckCircleIcon } from '@heroicons/react/20/solid'
 
 // default imports
 import Link from 'next/link'
+import { useUserStore } from '@/store/useUserStore'
 
 const features = [
   {
@@ -23,13 +29,47 @@ const features = [
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 const SignupForm = () => {
+  const token = useUserStore((state) => state.token)
+
+  const { toast } = useToast()
+  const router = useRouter()
+
+  if (token) {
+    router.push('/home')
+  }
+
+  const createUser = async (formData: FormData) => {
+    try {
+      const user = await register(formData)
+      if (user) {
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        })
+        router.push('/home')
+      }
+    } catch (error) {
+      toast({
+        title: "An error occurred.",
+        description: "Unable to create your account.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  }
+
   return (
     <div className='grid grid-cols-2 mt-4'>
-      <div>
+      <div className='border-r border-amber-500'>
         <div className={montserrat.className}>
           <h2 className='text-3xl font-semibold first-letter:text-amber-600 text-gray-300 first-letter:text-5xl first-letter:font-serif'>Sunaar</h2 >
         </div>
 
+        {/* Feature Description */}
         <div>
           {features.map((feature, index) => (
             <div key={index} className='flex items-start space-x-2 my-8'>
@@ -46,32 +86,34 @@ const SignupForm = () => {
 
       </div>
 
-      <div className='text-gray-300 border-l py-4 border-amber-500'>
+      <div className='text-gray-300 py-4'>
         <p className='text-2xl font-semibold px-5'>Create a new account</p>
 
-        <form className='my-8 flex flex-col space-y-5 px-5'>
+        <form action={createUser} method='POST' className='my-8 flex flex-col space-y-5 px-5'>
           <div className='flex flex-col space-y-2' >
             <label className='text-xs font-semibold' htmlFor="name">Full name</label>
-            <input type="text" className='form-input' />
+            <input required name="name" type="text" className='form-input' />
           </div>
 
           <div className='flex flex-col space-y-2'>
             <label className='text-xs font-semibold' htmlFor='email'>Email</label>
-            <input type='email' className='form-input'
+            <input required name="email" type='email' className='form-input'
             />
           </div>
 
           <div className='flex flex-col space-y-2'>
-            <div className='flex justify-between items-center'>
-              <label className='text-xs font-semibold' htmlFor='password'>Password</label>
-              <p className='text-xs text-amber-500 font-semibold hover:text-gray-200 hover:cursor-pointer'>Forgot your password?</p>
-            </div>
-            <input type='password' className='form-input'
-            />
+            <label className='text-xs font-semibold' htmlFor='password'>Password</label>
+            <input required name="password" type='password' className='form-input' />
+          </div>
+
+          <div className='flex flex-col space-y-2'>
+            <label className='text-xs font-semibold' htmlFor='PasswordConfirm'>Confirm Password</label>
+            <input required name="PasswordConfirm" type='password' className='form-input' />
           </div>
 
           <div className='w-full space-y-2 pt-3'>
             <button
+              type='submit'
               className='w-full bg-amber-600 rounded-sm font-semibold hover:bg-amber-500 text-white px-3 py-2'
             >
               Continue

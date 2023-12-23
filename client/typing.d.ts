@@ -4,16 +4,6 @@ type Navlink = {
     icon: React.ReactNode;
 };
 
-type Customer = {
-  id: string
-  customerName: string
-  email: string
-  phone: string
-  location: string
-  revenue: number
-  averageOrderValue: number
-}
-
 type Order = {
   id: string
   date: Datetime
@@ -30,4 +20,22 @@ type Product = {
   category: string
   weight: number
   image: string
+}
+
+type Customer = {
+  ID: string
+  FirstName: string
+  LastName: string
+  Email: string
+  Phone: string
+  City: string
+  State: string
+  PostalCode: string
+  Address: string
+  CompanyName: string
+  CompanyEmail: string
+  CompanyPhone: string
+  CompanyAddress: string
+  Remark: string
+  CreatedAt: string
 }

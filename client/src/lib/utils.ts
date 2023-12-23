@@ -1,3 +1,4 @@
+import { useUserStore } from "@/store/useUserStore"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
  
@@ -11,4 +12,13 @@ export const handleCurrencyFormat = (value: number) => {
       currency: 'INR',
     }).format(value)
 }
-  
+
+export const getUser = () => {
+  if (typeof window !== 'undefined') {
+  // Perform localStorage action
+    const user = localStorage.getItem('token')
+    if (user) {
+    return JSON.parse(user)
+  }
+  return null
+}}

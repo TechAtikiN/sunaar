@@ -4,16 +4,18 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/golang-jwt/jwt"
 	"sunaar/initializers"
 	"sunaar/models"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt"
 )
 
 func DeserializeUser(c *fiber.Ctx) error {
 	// get the token from the request
 	var tokenString string
 	authorization := c.Get("Authorization")
+	fmt.Println(authorization)
 
 	// check if the token is in the header
 	if strings.HasPrefix(authorization, "Bearer ") {

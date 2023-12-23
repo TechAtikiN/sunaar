@@ -10,10 +10,8 @@ import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
 
 export async function HomePage() {
-
   return (
     <div className='page grid grid-cols-6 gap-5'>
-
       {/* KPI listing */}
       <KPIListing />
 

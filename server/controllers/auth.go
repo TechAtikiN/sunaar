@@ -2,13 +2,14 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"github.com/golang-jwt/jwt"
-	"golang.org/x/crypto/bcrypt"
 	"strings"
 	"sunaar/initializers"
 	"sunaar/models"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // SignInUser is used to sign in a user
@@ -139,10 +140,10 @@ func SignInUser(c *fiber.Ctx) error {
 		Name:     "token",
 		Value:    tokenString,
 		Path:     "/",
-		MaxAge:   config.JwtMaxAge * 60,
+		MaxAge:   config.JwtMaxAge * 60 * 60 * 24,
 		Secure:   false,
 		HTTPOnly: true,
-		Domain:   "localhost",
+		Domain:   "127.0.0.1",
 	})
 
 	// return the token

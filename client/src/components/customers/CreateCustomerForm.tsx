@@ -1,8 +1,19 @@
+import { addCustomer } from "@/actions/customers";
 import { Button } from "../ui/button";
 
-export default function CreateCustomerForm() {
+export default async function CreateCustomerForm() {
+  const addCustomer = async (formData: FormData) => {
+    'use server'
+    let formDataObject = Object.fromEntries(formData.entries())
+    // remove the action id from the form data
+    formDataObject = Object.fromEntries(
+      Object.entries(formDataObject).filter(([key, value]) => key !== 'action')
+    )
+    // console.log(formDataObject)
+  }
+
   return (
-    <form action='' className=''>
+    <form action={addCustomer} method='POST'>
 
       <div className='h-[570px] overflow-auto'>
         {/* Personal Details */}
@@ -17,42 +28,44 @@ export default function CreateCustomerForm() {
           <div className='grid grid-cols-6 gap-x-4 gap-y-5 p-5 w-3/4 '>
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='firstName'>First name</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='first_name' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='lastName'>Last name</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='last_name' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='email'>Email Address</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='email' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='phone'>Phone No.</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='phone' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-2 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='city'>City</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='city' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-2 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='state'>State</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='state' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-2 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='postalCode'>Postal Code</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='postal_code' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-6 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='address'>Address</label>
               <textarea
+                required
+                name="address"
                 rows={2} className='dashboard-form-input'
               ></textarea>
             </div>
@@ -73,27 +86,28 @@ export default function CreateCustomerForm() {
           <div className='grid grid-cols-6 gap-x-4 gap-y-5 p-5 w-3/4 '>
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='companyName'>Company name</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='company_name' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='companyEmail'>Company Email Address</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='company_email' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='companyContact'>Contact No.</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='company_phone' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-3 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='city'>Remark</label>
-              <input type='text' className='dashboard-form-input' />
+              <input name='remark' type='text' required className='dashboard-form-input' />
             </div>
 
             <div className='col-span-6 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='companyAddress'>Company Address</label>
               <textarea
+                name="company_address"
                 rows={2} className='dashboard-form-input'
               ></textarea>
             </div>

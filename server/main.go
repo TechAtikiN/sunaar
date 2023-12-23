@@ -34,13 +34,21 @@ func main() {
 	// register the middleware
 	app.Use(logger.New())
 
-	// register the CORS middleware
-	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "*",
-		AllowHeaders:     "Origin, Content-Type, Accept",
-		AllowMethods:     "GET, POST, PUT, DELETE,",
-		AllowCredentials: true,
-	}))
+	// register the cors middleware
+	app.Use(cors.New(
+		cors.Config{
+			AllowOrigins:     "http://localhost:3000",
+			AllowMethods:     "GET, POST, PUT, DELETE",
+			AllowCredentials: true,
+		},
+	))
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"status":  "success",
+			"message": "Welcome to Sunaar API",
+		})
+	})
 
 	// register the auth routes
 	micro.Route("/auth", func(router fiber.Router) {

@@ -20,7 +20,7 @@ const Login = () => {
       <div className='absolute z-20 top-0 right-[17%] w-2/3 overflow-hidden px-6'>
         {/* <div className='w-full absolute -rotate-45 h-[30px] bottom-40 left-1/3 h- bg-sky-600/80 drop-shadow-2xl' /> */}
 
-        <div className='py-8 text-gray-700 h-[550px] my-12 glass-card shadow-lg p-7'>
+        <div className='py-8 text-gray-700 h-[630px] my-12 glass-card shadow-lg p-7'>
           <SignupForm />
         </div>
       </div>

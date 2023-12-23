@@ -23,11 +23,9 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-// default imports
-import CustomerTableOptions from '../customers/CustomerTableOptions'
 
 interface Props {
-  data: any
+  data: Customer[]
   columns: any
 }
 
@@ -59,7 +57,7 @@ export default function EntityTable({ data, columns }: Props) {
 
   return (
     <div className='w-full'>
-      <CustomerTableOptions table={table} />
+      {/* <CustomerTableOptions table={table} /> */}
 
       {/* Table */}
       <div className='rounded-md border'>
