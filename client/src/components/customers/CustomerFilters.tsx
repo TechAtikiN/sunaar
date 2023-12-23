@@ -22,15 +22,15 @@ export default function CustomerFilters({ searchPlaceholder }: { searchPlacehold
       params.delete('query')
     }
     // Update the URL
-    replace(`${pathname}?${params.toString()}`)
-  }, 300);
+    replace(`${pathname}?${params.toString()}${searchParams.get('page') ? `&page=${searchParams.get('page')}` : ''}`)
+  }, 600);
 
   return (
     <div className='flex justify-between items-center'>
       <Input
         placeholder={searchPlaceholder}
         onChange={(e) => { handleSearch(e.target.value) }}
-        className='max-w-sm'
+        className='max-w-sm text-slate-800 placeholder:text-slate-700'
         defaultValue={searchParams.get('query')?.toString()}
       />
       <Button>

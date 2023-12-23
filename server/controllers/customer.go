@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"fmt"
+	"strconv"
 	"strings"
 	"sunaar/initializers"
 	"sunaar/models"
@@ -68,18 +68,33 @@ func CreateCustomer(c *fiber.Ctx) error {
 func GetCustomers(c *fiber.Ctx) error {
 	// get the request query
 	query := c.Query("query")
+	currentPage := c.Query("page")
+	limit := c.Query("limit")
+
+	// convert the currentPage and limit to int
+	currentPageInt, err := strconv.Atoi(currentPage)
+	if err != nil {
+		currentPageInt = 1
+	}
+
+	limitInt, err := strconv.Atoi(limit)
+	if err != nil {
+		limitInt = 8
+	}
 
 	// get all the customer from the database
 	var customers []models.Customer
 
 	// set initial value of results
 
-	// check if there is a query
+	// check if there is a query in the request query and get the customers from the database with pagination
 	if query != "" {
+		// get the customers from the database with pagination and search query, search for name, email, comapany name
 		initializers.DB.Where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR company_name LIKE ?",
-			fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query), fmt.Sprintf("%%%s%%", query)).Find(&customers)
+			"%"+query+"%", "%"+query+"%", "%"+query+"%", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Find(&customers)
 	} else {
-		initializers.DB.Find(&customers)
+		// get the customers from the database with pagination
+		initializers.DB.Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Find(&customers)
 	}
 
 	// check if there was an error getting the customers from the database
