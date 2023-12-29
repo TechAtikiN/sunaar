@@ -131,9 +131,9 @@ func GetCustomer(c *fiber.Ctx) error {
 
 	// return the customer
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status":  "success",
-		"message": "Customer retrieved successfully",
-		"data":    &customer,
+		"status":   "success",
+		"message":  "Customer retrieved successfully",
+		"customer": &customer,
 	})
 }
 

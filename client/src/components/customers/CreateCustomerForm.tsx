@@ -1,15 +1,34 @@
-import { addCustomer } from "@/actions/customers";
-import { Button } from "../ui/button";
+'use client'
 
-export default async function CreateCustomerForm() {
+// named imports
+import { createCustomer } from '@/actions/customers'
+import { Button } from '../ui/button'
+import { useToast } from '../ui/use-toast'
+import { useRouter } from 'next/navigation'
+
+export default function CreateCustomerForm() {
+  const { toast } = useToast()
+  const router = useRouter()
+
   const addCustomer = async (formData: FormData) => {
-    'use server'
-    let formDataObject = Object.fromEntries(formData.entries())
-    // remove the action id from the form data
-    formDataObject = Object.fromEntries(
-      Object.entries(formDataObject).filter(([key, value]) => key !== 'action')
-    )
-    // console.log(formDataObject)
+    // converting formData to JSON
+    let data = JSON.stringify(Object.fromEntries(formData))
+
+    const response = await createCustomer(data)
+    if (response === 'success') {
+      toast({
+        title: "New customer added!",
+        description: "Customer has been added successfully!",
+        duration: 3000,
+      })
+      router.push('/customers')
+    } else {
+      toast({
+        title: "An error occurred!",
+        description: "Unable to add customer!",
+        duration: 3000,
+      })
+    }
   }
 
   return (
@@ -65,7 +84,7 @@ export default async function CreateCustomerForm() {
               <label className='dashboard-form-label' htmlFor='address'>Address</label>
               <textarea
                 required
-                name="address"
+                name='address'
                 rows={2} className='dashboard-form-input'
               ></textarea>
             </div>
@@ -107,7 +126,7 @@ export default async function CreateCustomerForm() {
             <div className='col-span-6 flex flex-col space-y-2'>
               <label className='dashboard-form-label' htmlFor='companyAddress'>Company Address</label>
               <textarea
-                name="company_address"
+                name='company_address'
                 rows={2} className='dashboard-form-input'
               ></textarea>
             </div>

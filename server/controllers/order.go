@@ -11,17 +11,32 @@ import (
 
 // Return all orders
 func GetOrders(c *fiber.Ctx) error {
-	// get orders
+
+	// get customer id from query params
+	customerID := c.Query("customer_id")
+
 	var orders []models.Order
-	if err := initializers.DB.Preload("Products").Find(&orders).Error; err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail", "message": "failed to get orders",
-		})
+
+	// check if customer id is present in query params
+	if customerID != "" {
+		// fetch orders by customer id
+		if err := initializers.DB.Preload("Products").Where("customer_id = ?", customerID).Find(&orders).Error; err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"status": "fail", "message": "failed to get orders",
+			})
+		}
+	} else {
+		// fetch all orders
+		if err := initializers.DB.Preload("Products").Find(&orders).Error; err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"status": "fail", "message": "failed to get orders",
+			})
+		}
 	}
 
 	// return response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status": "success", "data": orders,
+		"status": "success", "orders": orders,
 	})
 }
 

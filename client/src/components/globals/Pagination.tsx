@@ -1,8 +1,10 @@
 'use client'
-
-import Link from 'next/link'
+// named imports
 import { usePathname } from 'next/navigation'
-import React from 'react'
+
+// default imports
+import Link from 'next/link'
+
 
 export default function Pagination({ currentPage }: { currentPage: number }) {
   const pathname = usePathname()

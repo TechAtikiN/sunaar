@@ -65,7 +65,7 @@
   }
 
   .customer-table-header-data {
-    @apply text-center py-4 text-slate-600 font-semibold text-base
+    @apply text-center py-3 text-slate-600 font-semibold text-base
   }
 
   .customer-table-data {
@@ -81,7 +81,7 @@
   }
 
   .dashboard-form-input {
-    @apply  px-3 py-1 focus:outline-none rounded-md focus:ring-1 focus:ring-amber-200 border border-gray-300 shadow-sm disabled:bg-slate-200 disabled:text-slate-500;
+    @apply  px-3 py-2 text-sm focus:outline-none rounded-md focus:ring-1 focus:ring-amber-200 border border-gray-300 shadow-sm disabled:bg-slate-200 disabled:text-slate-500;
   }
 
   .form-border {

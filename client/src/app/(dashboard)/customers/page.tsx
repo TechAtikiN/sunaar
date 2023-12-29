@@ -1,11 +1,9 @@
 // named imports
-import { getAllCustomers } from '@/actions/customers'
+import { Suspense } from 'react'
 
 // default imports
 import CustomerHeader from '@/components/customers/CustomerHeader'
 import CustomerFilters from '@/components/customers/CustomerFilters'
-
-import { Suspense } from 'react'
 import CustomersTable from '@/components/customers/CustomersTable'
 import LoadingSpinner from '@/components/globals/LoadingSpinner'
 import Pagination from '@/components/globals/Pagination'

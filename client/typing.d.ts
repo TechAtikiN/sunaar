@@ -39,3 +39,8 @@ type Customer = {
   Remark: string
   CreatedAt: string
 }
+
+type CustomerDetails = {
+  customer: Customer
+  orders: Order[]
+}

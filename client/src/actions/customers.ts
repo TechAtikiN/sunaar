@@ -3,8 +3,8 @@
 import { BASE_URL } from '@/constants/urls'
 import { cookies } from 'next/headers'
 
+// getting all customers
 export async function getAllCustomers(query: string, currentPage: number = 1, limit: number = 10) {
-  // getting token from cookies
   const token = cookies().get('token')
   try {
     const response = await fetch(`${BASE_URL}api/customers?query=${query}&page=${currentPage}&limit=${limit}`, {
@@ -17,10 +17,57 @@ export async function getAllCustomers(query: string, currentPage: number = 1, li
     const customers = await response.json()
     return customers
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
-export async function addCustomer(data: any) {
-  console.log('Adding Customer', data)
+// creating a customer
+export async function createCustomer(data: any) {
+  const token = cookies().get('token')
+  try {
+    const response = await fetch(`${BASE_URL}api/customers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      },
+      body: data
+    })
+
+    const { status } = await response.json()
+    console.log(status)
+    return status
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+}
+
+export async function getCustomerById(id: string) {
+  const token = cookies().get('token')
+
+  try {
+    // get customer details
+    const response = await fetch(`${BASE_URL}api/customers/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      }
+    })
+    const customer: Customer = await response.json()
+    
+    //get the orders associated with the customer
+    const customerOrders = await fetch(`${BASE_URL}api/orders?customer_id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      }
+    })
+    const orders: Order[] = await customerOrders.json()
+    return { customer, orders }
+  } catch (error) {
+    console.log(error)
+  }
 }

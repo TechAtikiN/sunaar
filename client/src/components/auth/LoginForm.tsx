@@ -42,13 +42,10 @@ const LoginForm = () => {
     try {
       const user = await login(formData)
       if (user) {
-        setToken(user)
         toast({
           title: "Successfully logged in.",
           description: "Welcome back to Sunaar!",
-          status: "success",
           duration: 3000,
-          isClosable: true,
         })
         router.push('/home')
       }
@@ -56,9 +53,7 @@ const LoginForm = () => {
       toast({
         title: "An error occurred!",
         description: "Unable to log you in!",
-        status: "error",
         duration: 3000,
-        isClosable: true,
       })
     }
   }

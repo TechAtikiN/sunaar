@@ -1,25 +1,14 @@
 // named imports
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { getCustomerById } from '@/actions/customers'
 
 // default imports
 import CustomerOrderHistory from '@/components/customers/CustomerOrderHistory'
 
-const customerDetails = {
-  name: 'Ram Kumar Sharma',
-  companyName: 'R.K Jewellers',
-  email: 'rksharma@gmail.com',
-  phone: '9876543210',
-  city: 'Mumbai',
-  state: 'Maharashtra',
-  postalCode: '400001',
-  address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptatum.',
-  companyEmail: 'rkjewels@gmail.com',
-  companyPhone: '9876543210',
-  companyAddress: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptatum.',
-  remark: 'Lorem, ipsum dolor sit amet consectetur'
-}
+export default async function CustomerDetails({ params }: { params: { customerId: string } }) {
+  const customerDetails: CustomerDetails | undefined = await getCustomerById(params.customerId)
+  console.log(customerDetails)
 
-export default function CustomerDetails({ params }: { params: { customerId: string } }) {
   return (
     <div className='page text-slate-600'>
 
@@ -49,13 +38,13 @@ export default function CustomerDetails({ params }: { params: { customerId: stri
               <div className='mb-2'>
                 <h3 className='text-lg font-bold'>Personal Details</h3>
                 <div className='grid grid-cols-2 gap-x-2 gap-y-4 py-3'>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Name</span>: {customerDetails.name}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {customerDetails.email}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Phone No.</span>: {customerDetails.phone}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>City</span>: {customerDetails.city}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>State</span>: {customerDetails.state}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Postal Code</span>: {customerDetails.postalCode}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Address</span>: {customerDetails.address}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Name</span>: {`${customerDetails?.customer.FirstName} ${customerDetails?.customer.LastName}`}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {customerDetails?.customer.Email}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Phone No.</span>: {customerDetails?.customer.Phone}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>City</span>: {customerDetails?.customer.City}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>State</span>: {customerDetails?.customer.State}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Postal Code</span>: {customerDetails?.customer.PostalCode}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Address</span>: {customerDetails?.customer.Address}</p>
                 </div>
               </div>
 
@@ -64,11 +53,11 @@ export default function CustomerDetails({ params }: { params: { customerId: stri
               <div className='mb-2'>
                 <h3 className='text-lg font-bold'>Company Details</h3>
                 <div className='grid grid-cols-2 gap-x-2 gap-y-4 py-3'>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Name</span>: {customerDetails.companyName}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {customerDetails.companyEmail}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Contact No.</span>: {customerDetails.companyPhone}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Remark</span>: {customerDetails.remark}</p>
-                  <p className='text-sm text-slate-600'><span className='font-bold'>Address</span>: {customerDetails.companyAddress}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Name</span>: {customerDetails?.customer.CompanyName}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {customerDetails?.customer.CompanyEmail}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Contact No.</span>: {customerDetails?.customer.CompanyPhone}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Remark</span>: {customerDetails?.customer.Remark}</p>
+                  <p className='text-sm text-slate-600'><span className='font-bold'>Address</span>: {customerDetails?.customer.CompanyAddress}</p>
                 </div>
               </div>
             </div>
