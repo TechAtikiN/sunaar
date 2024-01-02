@@ -12,59 +12,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// Create customer //
-func CreateCustomer(c *fiber.Ctx) error {
-	// get the request body
-	var payload *models.CustomerInput
-
-	// parse the request body into the payload
-	if err := c.BodyParser(&payload); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail", "message": err.Error(),
-		})
-	}
-
-	// validate the request body
-	errors := models.ValidateStuct(payload)
-	if errors != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail", "message": errors,
-		})
-	}
-
-	// create a new customer
-	newCustomer := models.Customer{
-		FirstName:      payload.FirstName,
-		LastName:       payload.LastName,
-		Email:          strings.ToLower(payload.Email),
-		Phone:          payload.Phone,
-		City:           payload.City,
-		State:          payload.State,
-		PostalCode:     payload.PostalCode,
-		Address:        payload.Address,
-		CompanyName:    payload.CompanyName,
-		CompanyEmail:   payload.CompanyEmail,
-		CompanyPhone:   payload.CompanyPhone,
-		CompanyAddress: payload.CompanyAddress,
-		Remark:         payload.Remark,
-	}
-
-	// save the customer to the database
-	result := initializers.DB.Create(&newCustomer)
-
-	// check if there was an error saving the customer to the database
-	if result.Error != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"status": "fail", "message": result.Error.Error(),
-		})
-	}
-
-	// return the customer
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-		"status": "success", "message": "Customer created successfully", "data": &newCustomer,
-	})
-}
-
 // Get all customers //
 func GetCustomers(c *fiber.Ctx) error {
 	// get the request query
@@ -72,7 +19,7 @@ func GetCustomers(c *fiber.Ctx) error {
 	currentPage := c.Query("page")
 	limit := c.Query("limit")
 
-	// convert the currentPage and limit to int
+	// converting the currentPage and limit to int
 	currentPageInt, err := strconv.Atoi(currentPage)
 	if err != nil {
 		currentPageInt = 1
@@ -85,8 +32,6 @@ func GetCustomers(c *fiber.Ctx) error {
 
 	// get all the customer from the database
 	var customers []models.Customer
-
-	// set initial value of results
 
 	// check if there is a query in the request query and get the customers from the database with pagination
 	if query != "" {
@@ -137,6 +82,59 @@ func GetCustomer(c *fiber.Ctx) error {
 		"status":   "success",
 		"message":  "Customer retrieved successfully",
 		"customer": &customer,
+	})
+}
+
+// Create customer //
+func CreateCustomer(c *fiber.Ctx) error {
+	// get the request body
+	var payload *models.CustomerInput
+
+	// parse the request body into the payload
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": err.Error(),
+		})
+	}
+
+	// validate the request body
+	errors := models.ValidateStuct(payload)
+	if errors != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": errors,
+		})
+	}
+
+	// create a new customer
+	newCustomer := models.Customer{
+		FirstName:      payload.FirstName,
+		LastName:       payload.LastName,
+		Email:          strings.ToLower(payload.Email),
+		Phone:          payload.Phone,
+		City:           payload.City,
+		State:          payload.State,
+		PostalCode:     payload.PostalCode,
+		Address:        payload.Address,
+		CompanyName:    payload.CompanyName,
+		CompanyEmail:   payload.CompanyEmail,
+		CompanyPhone:   payload.CompanyPhone,
+		CompanyAddress: payload.CompanyAddress,
+		Remark:         payload.Remark,
+	}
+
+	// save the customer to the database
+	result := initializers.DB.Create(&newCustomer)
+
+	// check if there was an error saving the customer to the database
+	if result.Error != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"status": "fail", "message": result.Error.Error(),
+		})
+	}
+
+	// return the customer
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"status": "success", "message": "Customer created successfully", "data": &newCustomer,
 	})
 }
 

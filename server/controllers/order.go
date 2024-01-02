@@ -13,9 +13,24 @@ import (
 // Return all orders
 func GetOrders(c *fiber.Ctx) error {
 
-	// get customer id from query params
+	// get query params
 	customerID := c.Query("customer_id")
+	query := c.Query("query")
+	currentPage := c.Query("page")
+	limit := c.Query("limit")
 
+	// converting the currentPage and limit to int
+	currentPageInt, err := strconv.Atoi(currentPage)
+	if err != nil {
+		currentPageInt = 1
+	}
+
+	limitInt, err := strconv.Atoi(limit)
+	if err != nil {
+		limitInt = 8
+	}
+
+	// get all orders
 	var orders []models.Order
 
 	// check if customer id is present in query params
@@ -26,9 +41,16 @@ func GetOrders(c *fiber.Ctx) error {
 				"status": "fail", "message": "failed to get orders",
 			})
 		}
+	} else if query != "" {
+		// fetch all orders with pagination and search query, search for customer name, customer email,
+		if err := initializers.DB.Preload("Products").Where("customer_name LIKE ? OR customer_email LIKE ?", "%"+query+"%", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"status": "fail", "message": "failed to get orders",
+			})
+		}
 	} else {
-		// fetch all orders
-		if err := initializers.DB.Preload("Products").Find(&orders).Error; err != nil {
+		// fetch all orders with pagination
+		if err := initializers.DB.Preload("Products").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 				"status": "fail", "message": "failed to get orders",
 			})
@@ -158,6 +180,7 @@ func CreateOrder(c *fiber.Ctx) error {
 		CustomerName:  payload.CustomerName,
 		CustomerEmail: payload.CustomerEmail,
 		CustomerPhone: payload.CustomerPhone,
+		CompanyName:   payload.CompanyName,
 		OrderRemark:   payload.OrderRemark,
 		OrderWeight:   strconv.FormatFloat(orderWeight, 'f', -1, 64),
 		OrderValue:    strconv.FormatFloat(orderValue, 'f', -1, 64),

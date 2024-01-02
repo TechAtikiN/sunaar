@@ -1,111 +1,39 @@
 // named imports
-import { orderColumns } from '@/components/orders/OrdersColumnDef'
+import { Suspense } from 'react'
 
 // default imports
-import EntityTable from '@/components/globals/EntityTable'
+import CustomerFilters from '@/components/customers/CustomerFilters'
+import LoadingSpinner from '@/components/globals/LoadingSpinner'
+import OrdersTable from '@/components/orders/OrdersTable'
 import PurchaseOrdersHeader from '@/components/orders/PurchaseOrdersHeader'
+import OrdersFilters from '@/components/orders/OrdersFilters'
 
-const yesterday = new Date(new Date().setDate(new Date().getDate() - 1)).toLocaleDateString('en-IN')
-
-const data: Order[] = [
-  {
-    id: 'OD001',
-    date: new Date().toLocaleDateString('en-IN'),
-    customerId: 'C001',
-    customerName: 'R. k Sharma',
-    orderValue: 100000,
-    status: 'In Progress',
-    orderWeight: 200,
-  },
-  {
-    id: 'OD002',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'Piyush Sharma',
-    orderValue: 490000,
-    status: 'Active',
-    orderWeight: 300,
-  },
-  {
-    id: 'OD003',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'Jayant Agarwal',
-    orderValue: 100000,
-    status: 'Active',
-    orderWeight: 100,
-  },
-  {
-    id: 'OD004',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'R. k Sharma',
-    orderValue: 300000,
-    status: 'Completed',
-    orderWeight: 50,
-  },
-  {
-    id: 'OD005',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'Piyush Sharma',
-    orderValue: 100000,
-    status: 'Active',
-    orderWeight: 100,
-  },
-  {
-    id: 'OD006',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'Mohit Bansal',
-    orderValue: 100000,
-    status: 'Completed',
-    orderWeight: 100,
-  },
-  {
-    id: 'OD007',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'R. k Sharma',
-    orderValue: 100000,
-    status: 'In Progress',
-    orderWeight: 100,
-  },
-  {
-    id: 'OD008',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'R. k Sharma',
-    orderValue: 100000,
-    status: 'Active',
-    orderWeight: 100,
-  },
-  {
-    id: 'OD009',
-    date: yesterday,
-    customerId: 'C001',
-    customerName: 'R. k Sharma',
-    orderValue: 100000,
-    status: 'Active',
-    orderWeight: 100,
-  },
-]
-
-export default function PurchaseOrders() {
-
-  const columns = orderColumns
+export default function PurchaseOrders({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string
+    page?: string
+    limit?: string
+  }
+}) {
+  const query = searchParams?.query || ''
+  const currentPage = Number(searchParams?.page) || 1
+  const limit = Number(searchParams?.limit) || 8
 
   return (
     <div className='page h-screen'>
       <PurchaseOrdersHeader />
 
       <div className='section my-5'>
+        {/* Filters */}
+        <OrdersFilters searchPlaceholder='Filter using Customer Name or Email or Status' />
 
         {/* Table section */}
-        <EntityTable
-          columns={columns}
-          data={data}
-        />
+        <Suspense key={query + currentPage} fallback={<LoadingSpinner />}>
+          <OrdersTable query={query} currentPage={currentPage} limit={limit} />
+        </Suspense>
+
       </div>
     </div>
   )

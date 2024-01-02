@@ -13,10 +13,11 @@ type Order = {
 }
 
 type Product = {
-  id: number
-  category: string
-  weight: number
-  image: string
+  ID: number
+  Name: string
+  Category: number
+  Weight: string
+  Image: string
 }
 
 type Customer = {
@@ -40,4 +41,19 @@ type Customer = {
 type CustomerDetails = {
   customer: Customer
   orders: Order[]
+}
+
+type OrderDetails = {
+  ID: string
+  CustomerID: string
+  Products: Product[]
+  Status: string
+  CustomerName: string
+  CustomerEmail: string
+  CustomerPhone: string
+  CompanyName: string
+  OrderRemark: string
+  CreatedAt: string
+  OrderValue: number
+  OrderWeight: number
 }

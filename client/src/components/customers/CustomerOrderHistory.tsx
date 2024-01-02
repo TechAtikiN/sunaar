@@ -1,8 +1,8 @@
 'use client'
 
-import { formatDate, handleCurrencyFormat } from '@/lib/utils'
 // named imports
 import { useRouter } from 'next/navigation'
+import { formatDate, handleCurrencyFormat } from '@/lib/utils'
 
 interface Props {
   customerDetails: CustomerDetails | undefined
@@ -10,7 +10,6 @@ interface Props {
 
 export default function CustomerOrderHistory({ customerDetails }: Props) {
   const router = useRouter()
-  console.log(customerDetails?.orders)
 
   return (
     <table className='w-full'>
@@ -37,7 +36,7 @@ export default function CustomerOrderHistory({ customerDetails }: Props) {
             <td className='py-3 text-sm text-center'>{order.OrderWeight}&nbsp;gm</td>
             <td className='py-3 text-sm text-center'>
               <span
-                className={`px-2 py-1 rounded-full text-xs font-semibold ${order.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : order.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                className={`badge ${order.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : order.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
               >
                 {order.Status}
               </span>

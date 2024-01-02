@@ -64,6 +64,7 @@ type Order struct {
 	CustomerName  string     `gorm:"type:varchar(255);not null"`
 	CustomerEmail string     `gorm:"type:varchar(255);not null"`
 	CustomerPhone string     `gorm:"type:varchar(255);not null"`
+	CompanyName   string     `gorm:"type:varchar(255);not null"`
 	OrderRemark   string     `gorm:"type:varchar(1000);not null"`
 	CreatedAt     *time.Time `gorm:"not null;default:now()"`
 	UpdatedAt     *time.Time `gorm:"not null;default:now()"`
@@ -91,6 +92,7 @@ type OrderInput struct {
 	CustomerID    string `json:"customer_id"`
 	CustomerName  string `json:"customer_name"`
 	CustomerEmail string `json:"customer_email"`
+	CompanyName   string `json:"company_name"`
 	CustomerPhone string `json:"customer_phone"`
 	OrderRemark   string `json:"order_remark"`
 	OrderWeight   string `json:"order_weight"`
@@ -116,6 +118,7 @@ type OrderResponse struct {
 	CustomerName  string    `json:"customer_name,omitempty"`
 	CustomerEmail string    `json:"customer_email,omitempty"`
 	CustomerPhone string    `json:"customer_phone,omitempty"`
+	CompanyName   string    `json:"company_name,omitempty"`
 	OrderRemark   string    `json:"order_remark,omitempty"`
 	OrderWeight   string    `json:"order_weight,omitempty"`
 	OrderValue    string    `json:"order_value,omitempty"`
