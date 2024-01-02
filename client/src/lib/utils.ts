@@ -26,8 +26,19 @@ export const getUser = () => {
 export const formatDate = (date: string) => {
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
   })
   return formattedDate
 }
+
+export const formatId = (id: string) => {
+  const formattedId = id.slice(0, 4) + '...' + id.slice(-4)
+  return formattedId
+}
+
+export const formatQueryParam = (query: string) => {
+  const formattedQuery = query?.split(' ').map(word => word?.charAt(0).toUpperCase() + word?.slice(1)).join(' ')
+  return formattedQuery
+}
+    

@@ -13,7 +13,7 @@ type Order = {
 }
 
 type Product = {
-  ID: number
+  ID: string
   Name: string
   Category: number
   Weight: string

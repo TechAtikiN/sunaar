@@ -15,8 +15,44 @@ export async function getAllOrders(query: string, currentPage: number = 1, limit
       }
     })
     const orders = await response.json()
-    console.log(orders)
     return orders
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function getOrderById(id: string) {
+  const token = cookies().get('token')
+
+  try {
+    const response = await fetch(`${BASE_URL}api/orders/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      }
+    })
+    const { data: order }: { data: OrderDetails } = await response.json()
+    return order
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function updateOrderStatus(id: string, status: string) {
+  const token = cookies().get('token')
+
+  try {
+    const response = await fetch(`${BASE_URL}api/orders/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      },
+      body: JSON.stringify({ status })
+    })
+    const { status: result }: { status: string } = await response.json()
+    return result
   } catch (error) {
     console.log(error)
   }

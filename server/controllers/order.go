@@ -42,12 +42,13 @@ func GetOrders(c *fiber.Ctx) error {
 			})
 		}
 	} else if query != "" {
-		// fetch all orders with pagination and search query, search for customer name, customer email,
-		if err := initializers.DB.Preload("Products").Where("customer_name LIKE ? OR customer_email LIKE ?", "%"+query+"%", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
+		// fetching all orders with pagination and search query, search for customer name, customer email, and company name
+		if err := initializers.DB.Preload("Products").Where("customer_name LIKE ? OR customer_email LIKE ? OR company_name LIKE ?", "%"+query+"%", "%"+query+"%", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 				"status": "fail", "message": "failed to get orders",
 			})
 		}
+
 	} else {
 		// fetch all orders with pagination
 		if err := initializers.DB.Preload("Products").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {

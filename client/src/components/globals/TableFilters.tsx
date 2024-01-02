@@ -7,7 +7,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { DownloadIcon } from 'lucide-react'
 
-export default function OrdersFilters({ searchPlaceholder }: { searchPlaceholder: string }) {
+export default function TableFilters({ searchPlaceholder }: { searchPlaceholder: string }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()

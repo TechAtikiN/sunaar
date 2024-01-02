@@ -3,6 +3,7 @@ import { getAllCustomers } from '@/actions/customers'
 
 // default imports
 import ActionDetails from '../globals/ActionDetails'
+import { formatId } from '@/lib/utils'
 
 export default async function CustomersTable({
   query,
@@ -30,11 +31,14 @@ export default async function CustomersTable({
         </tr>
       </thead>
 
-      <tbody className=''>
+      <tbody>
         {customers?.length > 0 ? customers?.map((customer: Customer) => (
-          <tr key={customer?.ID}>
+          <tr
+            key={customer?.ID}
+            className='hover:bg-slate-100'
+          >
             <td className='px-2 py-4 table-data'>
-              {`${customer?.ID.slice(0, 4)}...${customer?.ID.slice(-4)}`}
+              {formatId(customer?.ID)}
             </td>
             <td className='table-data'>{`${customer?.FirstName} ${customer?.LastName}`}</td>
             <td className='table-data'>{customer?.CompanyName}</td>

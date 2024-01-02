@@ -26,7 +26,7 @@ export default async function CustomerDetails({ params }: { params: { customerId
             <div className='pb-5'>
               <h3 className='text-lg font-bold pb-1'>Order History</h3>
               <div className='h-[511px] overflow-auto py-1'>
-                <CustomerOrderHistory customerDetails={customerDetails} />
+                <CustomerOrderHistory orders={customerDetails?.orders} />
               </div>
             </div>
           </div>

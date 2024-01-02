@@ -36,7 +36,6 @@ export async function createCustomer(data: any) {
     })
 
     const { status } = await response.json()
-    console.log(status)
     return status
   } catch (error) {
     console.log(error)
@@ -68,7 +67,6 @@ export async function getCustomerById(id: string) {
     })
     const { orders }: { orders: Order[] } = await customerOrders.json()
     const customerDetails = { customer, orders }
-    console.log(customerDetails)
     return customerDetails
   } catch (error) {
     console.log(error)
