@@ -72,6 +72,7 @@ func main() {
 		router.Get("/:id", middleware.DeserializeUser, controllers.GetOrder)
 		router.Post("/", middleware.DeserializeUser, controllers.CreateOrder)
 		router.Put("/:id", middleware.DeserializeUser, controllers.UpdateStatus)
+		router.Delete("/:id", middleware.DeserializeUser, controllers.DeleteOrder)
 	})
 
 	micro.Get("/users/me", middleware.DeserializeUser, controllers.GetUser)

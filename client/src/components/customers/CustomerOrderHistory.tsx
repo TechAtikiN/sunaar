@@ -1,11 +1,16 @@
 'use client'
 
+import { formatDate, handleCurrencyFormat } from '@/lib/utils'
 // named imports
 import { useRouter } from 'next/navigation'
-import { orderDetails } from '@/constants/data'
 
-export default function CustomerOrderHistory() {
+interface Props {
+  customerDetails: CustomerDetails | undefined
+}
+
+export default function CustomerOrderHistory({ customerDetails }: Props) {
   const router = useRouter()
+  console.log(customerDetails?.orders)
 
   return (
     <table className='w-full'>
@@ -18,27 +23,31 @@ export default function CustomerOrderHistory() {
         </tr>
       </thead>
       <tbody className='border-b border-gray-200'>
-        {orderDetails.map((order) => (
+        {customerDetails && customerDetails?.orders?.length > 0 ? customerDetails?.orders?.map((order: Order) => (
           <tr
-            onClick={() => router.push(`/orders/${order.id}`)}
-            key={order.id}
+            onClick={() => router.push(`/orders/${order.ID}`)}
+            key={order.ID}
             className='border-b hover:cursor-pointer border-gray-200 hover:bg-slate-100/50'
           >
             <td className='flex flex-col py-2 text-sm text-center'>
-              <span className='font-semibold'>{order.id}</span>
-              <span className='text-xs'>{order.date}</span>
+              <span className='font-semibold'>{`${order?.ID.slice(0, 4)}...${order?.ID.slice(-4)}`}</span>
+              <span className='text-xs'>{formatDate(order?.CreatedAt)}</span>
             </td>
-            <td className='py-3 text-sm text-center'>{order.orderValue}</td>
-            <td className='py-3 text-sm text-center'>{order.orderWeight}</td>
+            <td className='py-3 text-sm text-center'>{handleCurrencyFormat(order.OrderValue)}</td>
+            <td className='py-3 text-sm text-center'>{order.OrderWeight}&nbsp;gm</td>
             <td className='py-3 text-sm text-center'>
               <span
-                className={`px-2 py-1 rounded-full text-xs font-semibold ${order.orderStatus === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : order.orderStatus === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                className={`px-2 py-1 rounded-full text-xs font-semibold ${order.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : order.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
               >
-                {order.orderStatus}
+                {order.Status}
               </span>
             </td>
           </tr>
-        ))}
+        )) : (
+          <tr className=''>
+            <td className='text-center px-2 py-4 text-slate-600 text-sm border-b border-slate-300' colSpan={4}>No orders found</td>
+          </tr>
+        )}
       </tbody>
     </table>
   )

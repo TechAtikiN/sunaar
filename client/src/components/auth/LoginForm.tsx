@@ -6,8 +6,6 @@ import { useToast } from '../ui/use-toast'
 import { login } from '@/actions/auth'
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
 import { Montserrat } from 'next/font/google'
-import { useUserStore } from '@/store/useUserStore'
-
 // default imports
 import Link from 'next/link'
 
@@ -29,14 +27,8 @@ const features = [
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 const LoginForm = () => {
-  const [token, setToken] = useUserStore((state) => [state.token, state.setToken])
   const { toast } = useToast()
   const router = useRouter()
-
-  //check if user is logged in
-  if (token) {
-    router.push('/home')
-  }
 
   const loginUser = async (formData: FormData) => {
     try {

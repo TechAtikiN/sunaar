@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"strconv"
 	"sunaar/initializers"
 	"sunaar/models"
 
@@ -36,7 +37,7 @@ func GetOrders(c *fiber.Ctx) error {
 
 	// return response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status": "success", "orders": orders,
+		"status": "success", "orders": &orders,
 	})
 }
 
@@ -123,6 +124,34 @@ func CreateOrder(c *fiber.Ctx) error {
 		})
 	}
 
+	// calculate order weight
+	var orderWeight float64
+	for _, product := range products {
+		// convert product weight from string to float
+		productWeight, err := strconv.ParseFloat(product.Weight, 64)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"status": "fail", "message": err.Error(),
+			})
+		}
+
+		orderWeight += productWeight
+	}
+
+	// calculate order value
+	var orderValue float64
+	for _, product := range products {
+		// convert product weight from string to float
+		productWeight, err := strconv.ParseFloat(product.Weight, 64)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"status": "fail", "message": err.Error(),
+			})
+		}
+
+		orderValue += productWeight * 6000
+	}
+
 	// create order
 	order := models.Order{
 		CustomerID:    &customerID,
@@ -130,8 +159,8 @@ func CreateOrder(c *fiber.Ctx) error {
 		CustomerEmail: payload.CustomerEmail,
 		CustomerPhone: payload.CustomerPhone,
 		OrderRemark:   payload.OrderRemark,
-		OrderWeight:   payload.OrderWeight,
-		OrderValue:    payload.OrderValue,
+		OrderWeight:   strconv.FormatFloat(orderWeight, 'f', -1, 64),
+		OrderValue:    strconv.FormatFloat(orderValue, 'f', -1, 64),
 		Products:      products,
 	}
 
@@ -201,5 +230,31 @@ func UpdateStatus(c *fiber.Ctx) error {
 		"data": fiber.Map{
 			"order_id": id, "status": payload.Status,
 		},
+	})
+}
+
+// Delete order
+func DeleteOrder(c *fiber.Ctx) error {
+	// get order id from params
+	orderID := c.Params("id")
+
+	// parse order id
+	id, err := uuid.Parse(orderID)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": err.Error(),
+		})
+	}
+
+	// delete order
+	if err := initializers.DB.Where("id = ?", id).Delete(&models.Order{}).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": err.Error(),
+		})
+	}
+
+	// return response
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success", "message": "order deleted successfully",
 	})
 }

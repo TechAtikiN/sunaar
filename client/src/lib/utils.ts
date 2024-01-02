@@ -1,4 +1,3 @@
-import { useUserStore } from "@/store/useUserStore"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
  
@@ -21,4 +20,14 @@ export const getUser = () => {
     return JSON.parse(user)
   }
   return null
-}}
+  }
+}
+
+export const formatDate = (date: string) => {
+  const formattedDate = new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+  return formattedDate
+}

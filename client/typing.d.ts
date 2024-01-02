@@ -5,14 +5,11 @@ type Navlink = {
 };
 
 type Order = {
-  id: string
-  date: Datetime
-  customerId: string
-  customerName: string
-  orderWeight: number
-  orderValue: number
-  // invoice: File
-  status: string
+  ID: string
+  CreatedAt: string
+  OrderValue: number
+  OrderWeight: number
+  Status: string
 }
 
 type Product = {

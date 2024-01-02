@@ -14,7 +14,7 @@ export default async function CustomersTable({
   limit?: number
 }) {
   // Fetch customers 
-  const { data: customers }: { data: Customer[] } = await getAllCustomers(query, currentPage, limit)
+  const { customers: customers }: { customers: Customer[] } = await getAllCustomers(query, currentPage, limit)
 
   return (
     <table className='w-full border border-gray-200 my-4 p-4 rounded-lg'>

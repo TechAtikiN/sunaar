@@ -6,6 +6,7 @@ import { cookies } from 'next/headers'
 // getting all customers
 export async function getAllCustomers(query: string, currentPage: number = 1, limit: number = 10) {
   const token = cookies().get('token')
+
   try {
     const response = await fetch(`${BASE_URL}api/customers?query=${query}&page=${currentPage}&limit=${limit}`, {
       method: 'GET',
@@ -55,7 +56,7 @@ export async function getCustomerById(id: string) {
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const customer: Customer = await response.json()
+    const { customer }  : {customer: Customer } = await response.json()
     
     //get the orders associated with the customer
     const customerOrders = await fetch(`${BASE_URL}api/orders?customer_id=${id}`, {
@@ -65,8 +66,10 @@ export async function getCustomerById(id: string) {
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const orders: Order[] = await customerOrders.json()
-    return { customer, orders }
+    const { orders }: { orders: Order[] } = await customerOrders.json()
+    const customerDetails = { customer, orders }
+    console.log(customerDetails)
+    return customerDetails
   } catch (error) {
     console.log(error)
   }
