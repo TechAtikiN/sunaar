@@ -12,7 +12,6 @@ import (
 
 // Return all orders
 func GetOrders(c *fiber.Ctx) error {
-
 	// get query params
 	customerID := c.Query("customer_id")
 	query := c.Query("query")

@@ -75,6 +75,12 @@ func main() {
 		router.Delete("/:id", middleware.DeserializeUser, controllers.DeleteOrder)
 	})
 
+	// register the product routes
+	micro.Route("/products", func(router fiber.Router) {
+		router.Get("/", middleware.DeserializeUser, controllers.GetProducts)
+		router.Get("/:id", middleware.DeserializeUser, controllers.GetProduct)
+	})
+
 	micro.Get("/users/me", middleware.DeserializeUser, controllers.GetUser)
 
 	micro.All("*", func(c *fiber.Ctx) error {

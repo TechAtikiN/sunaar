@@ -1,75 +1,45 @@
-'use client'
-
 // named imports
-import React, { useEffect } from 'react'
-import { useInfiniteQuery } from 'react-query'
-import { useInView } from 'react-intersection-observer'
+import { getAllProducts } from '@/actions/products'
+import { formatId } from '@/lib/utils';
+
 // default imports
 import Image from 'next/image'
-import axios from 'axios'
-import LoadingSpinner from '../globals/LoadingSpinner'
 
-export default function ProductsListing({ category }: { category: string }) {
-  const { ref, inView } = useInView({ threshold: 0 })
-
-  // fetch products on page load as per the cursor
-  const {
-    isLoading, isError, data: products, error,
-    isFetchingNextPage, fetchNextPage, hasNextPage
-  } = useInfiniteQuery('products', async ({ pageParam = '' }) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    const response = await axios.get(
-      category ? `http://localhost:8000/products?category=${category}cursor=${pageParam}&` : `http://localhost:8000/products?cursor=${pageParam}`
-    )
-    return response.data
-  }, { getNextPageParam: (lastPage) => lastPage.nextId ?? false })
-
-  // fetch products on scroll as per the cursor
-  useEffect(() => {
-    if (inView && hasNextPage) fetchNextPage()
-  }, [inView])
-
-  if (isLoading) return <LoadingSpinner />
-  if (isError) return <div>Error!</div>
+export default async function ProductsListing({ category, page, limit }: { category: string, page: number, limit: number }) {
+  const products = await getAllProducts(page, limit, category)
 
   return (
     <div>
-      <div className='columns-3'>
-        {products && products.pages.map((page) => (
-          <React.Fragment key={page.nextId ?? 'lastPage'}>
-            {page.products.map((product: Product) => (
-              <div className='mb-6 relative hover:opacity-80 shadow-sm' key={product.id}>
-                <div className='relative group max-h-full max-w-auto'>
-                  <Image
-                    width={350}
-                    height={400}
-                    className='object-contain bg-slate-300'
-                    src={product.image}
-                    alt={product.category}
-                  />
-                </div>
-                <div className='group group-hover:visible absolute z-50 bottom-0 p-3'>
-                  <div className='flex space-x-2'>
-                    <p className='font-bold text-sm text-slate-800'>{product.category}-</p>
-                    <p className='font-semibold text-sm text-slate-800'>{`P0${product.id}`}</p>
-                  </div>
-                  <p className='text-xs text-slate-600'>{product.weight}gm</p>
-                </div>
+      <div className='grid grid-cols-3 gap-4'>
+        {products?.map((product: Product) => (
+          <div
+            className='relative overflow-hidden group hover:opacity-80 shadow-sm'
+            key={product.ID}
+          >
+            <div className='relative'>
+              <Image
+                width={350}
+                height={400}
+                className='object-cover'
+                src={product.Image}
+                alt={product.Name}
+              />
+              <div className='absolute inset-0 bg-gray-200 bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity'>
+                {/* Semi-transparent overlay */}
               </div>
-            ))}
-
-            {/* intersection observer */}
-            <span ref={ref} style={
-              { visibility: 'hidden' }
-            }>intersection observer</span>
-          </React.Fragment>
+            </div>
+            <div className='absolute inset-0 flex flex-col justify-end items-start m-3 text-slate-800 hover:cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity'>
+              <p className='font-bold'>{product.Name}</p>
+              <p className='font-bold text-xs'>{product.Category}</p>
+              <div className='flex justify-between items-center w-full'>
+                <p className='font-semibold text-xs'>{formatId(product.ID)}</p>
+                <p className='text-xs'><strong>{product.Weight}</strong>gm</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-
-      {/* loading spinner at bottom */}
-      {isFetchingNextPage && (
-        <LoadingSpinner />
-      )}
     </div>
   )
+
 }

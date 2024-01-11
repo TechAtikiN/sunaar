@@ -81,6 +81,14 @@ type Product struct {
 	Image    string     `gorm:"type:varchar(1000);not null"`
 }
 
+type ProductResponse struct {
+	ID       *uuid.UUID `json:"id,omitempty"`
+	Name     string     `json:"name,omitempty"`
+	Category string     `json:"category,omitempty"`
+	Weight   string     `json:"weight,omitempty"`
+	Image    string     `json:"image,omitempty"`
+}
+
 // OrderProduct is the model for the order_products table which is a join table for order and product
 type OrderProduct struct {
 	OrderID   *uuid.UUID `gorm:"type:uuid;not null"`

@@ -1,15 +1,23 @@
 // named imports
+import { formatQueryParam } from '@/lib/utils'
+
+// default imports
 import ProductsListing from '@/components/product-catalogue/ProductsListing'
 import SearchBar from '@/components/product-catalogue/SearchBar'
+
 export default async function ProductCatalogue({
   searchParams
 }: {
-  searchParams: { category: string, cursor: string }
-}) {
-  let { category } = searchParams
-  if (category) {
-    category = category.charAt(0).toUpperCase() + category.slice(1)
+  searchParams?: {
+    page?: string
+    limit?: string
+    category?: string
   }
+}) {
+  const page = Number(searchParams?.page) || 1
+  const limit = Number(searchParams?.limit) || 8
+  let category = searchParams?.category || ''
+  category = formatQueryParam(category)
 
   return (
     <div className='page'>
@@ -19,7 +27,7 @@ export default async function ProductCatalogue({
       </div>
       {/* <UploadProduct /> */}
       <div className='section p-5 my-4'>
-        <ProductsListing category={category} />
+        <ProductsListing category={category} page={page} limit={limit} />
       </div>
     </div>
   )

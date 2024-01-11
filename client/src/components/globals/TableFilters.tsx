@@ -23,7 +23,7 @@ export default function TableFilters({ searchPlaceholder }: { searchPlaceholder:
     }
     // Update the URL
     replace(`${pathname}?${params.toString()}${searchParams.get('page') ? `&page=${searchParams.get('page')}` : ''}`)
-  }, 600);
+  }, 600)
 
   return (
     <div className='flex justify-between items-center'>

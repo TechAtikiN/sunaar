@@ -20,6 +20,11 @@ type Product = {
   Image: string
 }
 
+type CartProduct = {
+  product: Product 
+  quantity: number
+}
+
 type Customer = {
   ID: string
   FirstName: string
