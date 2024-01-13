@@ -15,7 +15,6 @@ func DeserializeUser(c *fiber.Ctx) error {
 	// get the token from the request
 	var tokenString string
 	authorization := c.Get("Authorization")
-	fmt.Println(authorization)
 
 	// check if the token is in the header
 	if strings.HasPrefix(authorization, "Bearer ") {

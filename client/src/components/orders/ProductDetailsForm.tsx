@@ -73,6 +73,7 @@ export default function ProductDetailsForm() {
   const orderValue = products
     .reduce(
       (acc, product) => acc + (6000 * +product?.product?.Weight * product?.quantity), 0)
+
   const formattedOrderValue = handleCurrencyFormat(orderValue)
 
   return (

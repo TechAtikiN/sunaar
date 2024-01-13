@@ -92,111 +92,85 @@ func GetOrder(c *fiber.Ctx) error {
 
 // Create a new order
 func CreateOrder(c *fiber.Ctx) error {
-	// get the request body
+	// get request body
 	var payload *models.OrderInput
 
-	// parse the request body into the payload
+	// parse request body into payload
 	if err := c.BodyParser(&payload); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"status": "fail", "message": err.Error(),
 		})
 	}
 
-	// validate the request body
+	// validate request body
 	errors := models.ValidateStuct(payload)
 	if errors != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"status": "fail", "message": errors,
 		})
 	}
-	// parse customer id
-	customerID, err := uuid.Parse(payload.CustomerID)
-	if err != nil {
+
+	// get customer
+	var customer models.Customer
+	if err := initializers.DB.Where("id = ?", payload.CustomerID).First(&customer).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail", "message": err.Error(),
+			"status": "fail", "message": "customer not found",
 		})
 	}
 
-	// get products from payload
-	products := []models.Product{}
-	for _, product := range payload.Products {
-		// parse product id
-		productID, err := uuid.Parse(product.ID)
-		if err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"status": "fail", "message": err.Error(),
-			})
-		}
+	// get products
+	var products []models.Product
 
-		// check if product exists in database
-		var productExists models.Product
-		if err := initializers.DB.Where("id = ?", productID).First(&productExists).Error; err != nil {
+	// calculate order weight and value
+	var orderWeight float64
+	var orderValue float64
+
+	// parse product ids and quantity from payload
+	for _, orderProduct := range payload.OrderProducts {
+		// get product
+		var product models.Product
+		if err := initializers.DB.Where("id = ?", orderProduct.ProductID).First(&product).Error; err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"status": "fail", "message": "Product does not exist",
+				"status": "fail", "message": "product not found",
 			})
 		}
 
 		// append product to products
-		products = append(products, models.Product{
-			ID:       &productID,
-			Name:     product.Name,
-			Category: product.Category,
-			Weight:   product.Weight,
-			Image:    product.Image,
-		})
-	}
+		products = append(products, product)
 
-	// calculate order weight
-	var orderWeight float64
-	for _, product := range products {
-		// convert product weight from string to float
-		productWeight, err := strconv.ParseFloat(product.Weight, 64)
+		weight, err := strconv.ParseFloat(product.Weight, 64)
 		if err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"status": "fail", "message": err.Error(),
+				"status": "fail", "message": "failed to parse product weight",
 			})
 		}
 
-		orderWeight += productWeight
+		orderWeight += weight * float64(orderProduct.Quantity)
+		orderValue += 6000 * float64(orderProduct.Quantity)
 	}
 
-	// calculate order value
-	var orderValue float64
-	for _, product := range products {
-		// convert product weight from string to float
-		productWeight, err := strconv.ParseFloat(product.Weight, 64)
-		if err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"status": "fail", "message": err.Error(),
-			})
-		}
-
-		orderValue += productWeight * 6000
-	}
+	fmt.Println("order weight", orderWeight)
 
 	// create order
 	order := models.Order{
-		CustomerID:    &customerID,
-		CustomerName:  payload.CustomerName,
-		CustomerEmail: payload.CustomerEmail,
-		CustomerPhone: payload.CustomerPhone,
-		CompanyName:   payload.CompanyName,
-		OrderRemark:   payload.OrderRemark,
-		OrderWeight:   strconv.FormatFloat(orderWeight, 'f', -1, 64),
-		OrderValue:    strconv.FormatFloat(orderValue, 'f', -1, 64),
-		Products:      products,
+		CustomerID:  payload.CustomerID,
+		OrderRemark: payload.OrderRemark,
+		OrderValue:  fmt.Sprintf("%.2f", orderValue),
+		OrderWeight: fmt.Sprintf("%.2f", orderWeight),
+		Products:    products,
 	}
 
-	// save order
+	// create order
 	if err := initializers.DB.Create(&order).Error; err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail", "message": err.Error(),
+			"status": "fail", "message": err,
 		})
 	}
 
 	// return response
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
-		"status": "success", "message": "order created successfully", "data": order,
+		"status": "success", "message": "order created successfully",
+		"data": order,
 	})
 }
 

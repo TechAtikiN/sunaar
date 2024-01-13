@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }: {
       </div>
 
       {/* Main */}
-      <main className='col-span-10 flex flex-col bg-slate-200/50'>
+      <main className='col-span-10 flex flex-col'>
         {children}
       </main>
     </div>

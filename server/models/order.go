@@ -56,20 +56,23 @@ func (s *Status) UnmarshalJSON(b []byte) error {
 
 // Order is the model for the order table
 type Order struct {
-	ID         *uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key"`
-	CustomerID *uuid.UUID `gorm:"type:uuid;not null"`
-	Products   []Product  `gorm:"many2many:order_products;"`
+	ID          *uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key"`
+	OrderRemark string     `gorm:"type:varchar(1000);not null"`
+	OrderWeight string     `gorm:"type:varchar(255);not null"`
+	OrderValue  string     `gorm:"type:varchar(255);not null"`
 	// status is an integer, 0 = Active, 1 = InProgress, 2 = Completed, 3 = Cancelled, 4 = Unknown
-	Status        Status     `gorm:"type:integer;not null;default:0"`
-	CustomerName  string     `gorm:"type:varchar(255);not null"`
-	CustomerEmail string     `gorm:"type:varchar(255);not null"`
-	CustomerPhone string     `gorm:"type:varchar(255);not null"`
-	CompanyName   string     `gorm:"type:varchar(255);not null"`
-	OrderRemark   string     `gorm:"type:varchar(1000);not null"`
-	CreatedAt     *time.Time `gorm:"not null;default:now()"`
-	UpdatedAt     *time.Time `gorm:"not null;default:now()"`
-	OrderWeight   string     `gorm:"type:varchar(255);not null"`
-	OrderValue    string     `gorm:"type:varchar(255);not null"`
+	Status     Status     `gorm:"type:integer;not null;default:0"`
+	CustomerID string     `gorm:"type:uuid;not null"`
+	Products   []Product  `gorm:"many2many:order_products;"`
+	CreatedAt  *time.Time `gorm:"not null;default:now()"`
+	UpdatedAt  *time.Time `gorm:"not null;default:now()"`
+}
+
+// OrderProduct is the model for the order_products table which is a join table for order and product
+type OrderProduct struct {
+	OrderID   *uuid.UUID `gorm:"type:uuid;not null"`
+	ProductID *uuid.UUID `gorm:"type:uuid;not null"`
+	Quantity  int        `gorm:"type:integer;not null"`
 }
 
 // Product is the model for the product table
@@ -89,29 +92,14 @@ type ProductResponse struct {
 	Image    string     `json:"image,omitempty"`
 }
 
-// OrderProduct is the model for the order_products table which is a join table for order and product
-type OrderProduct struct {
-	OrderID   *uuid.UUID `gorm:"type:uuid;not null"`
-	ProductID *uuid.UUID `gorm:"type:uuid;not null"`
-}
-
 // OrderInput is the model for the order input
 type OrderInput struct {
 	CustomerID    string `json:"customer_id"`
-	CustomerName  string `json:"customer_name"`
-	CustomerEmail string `json:"customer_email"`
-	CompanyName   string `json:"company_name"`
-	CustomerPhone string `json:"customer_phone"`
 	OrderRemark   string `json:"order_remark"`
-	OrderWeight   string `json:"order_weight"`
-	OrderValue    string `json:"order_value"`
-	Products      []struct {
-		ID       string `json:"product_id"`
-		Name     string `json:"name"`
-		Category string `json:"category"`
-		Weight   string `json:"weight"`
-		Image    string `json:"image"`
-	} `json:"products"`
+	OrderProducts []struct {
+		ProductID string `json:"product_id"`
+		Quantity  int    `json:"quantity"`
+	} `json:"order_products"`
 }
 
 // OrderUpdateInput is the model for the order update input
@@ -132,10 +120,12 @@ type OrderResponse struct {
 	OrderValue    string    `json:"order_value,omitempty"`
 	Status        string    `json:"status,omitempty"`
 	Products      []struct {
-		Name     string `json:"name,omitempty"`
-		Category string `json:"category,omitempty"`
-		Weight   string `json:"weight,omitempty"`
-		Image    string `json:"image,omitempty"`
+		ID       uuid.UUID `json:"id,omitempty"`
+		Name     string    `json:"name,omitempty"`
+		Category string    `json:"category,omitempty"`
+		Weight   string    `json:"weight,omitempty"`
+		Image    string    `json:"image,omitempty"`
+		Quantity int       `json:"quantity,omitempty"`
 	} `json:"products,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	UpdatedAt time.Time `json:"updated_at,omitempty"`

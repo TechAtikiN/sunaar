@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 	"sunaar/initializers"
@@ -49,8 +48,6 @@ func GetCustomers(c *fiber.Ctx) error {
 			"status": "fail", "message": err.Error(),
 		})
 	}
-
-	fmt.Println(customers)
 
 	// return the customers
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{

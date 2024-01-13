@@ -1,18 +1,22 @@
+'use client'
+
 // named imports
+import { useProductCartStore } from '@/store/useProductCartStore'
 import { Button } from '../ui/button'
-import { useToast } from '../ui/use-toast'
 
 // default imports
 import CustomerDetailsForm from './CustomerDetailsForm'
 import ProductDetailsForm from './ProductDetailsForm'
 
-
-export default async function CreateOrder() {
+export default function CreateOrder() {
+  const [products] = useProductCartStore((state) => [state.products])
 
   async function handleSubmit(formData: FormData) {
-    "use server"
+    // 'use server'
     try {
-      console.log(formData)
+      // convert the form data to json
+      const data = Object.fromEntries(formData.entries())
+
     } catch (error) {
       console.log(error)
     }

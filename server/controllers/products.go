@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"strconv"
 	"sunaar/initializers"
 	"sunaar/models"
@@ -13,7 +12,6 @@ import (
 func GetProducts(c *fiber.Ctx) error {
 	// get query params
 	category := c.Query("category")
-	fmt.Println(category)
 	currentPage := c.Query("page")
 	limit := c.Query("limit")
 
