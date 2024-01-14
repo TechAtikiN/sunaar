@@ -25,6 +25,7 @@ export async function getAllCustomers(query: string, currentPage: number = 1, li
 // creating a customer
 export async function createCustomer(data: any) {
   const token = cookies().get('token')
+  
   try {
     const response = await fetch(`${BASE_URL}api/customers`, {
       method: 'POST',

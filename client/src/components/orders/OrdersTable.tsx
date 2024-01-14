@@ -22,7 +22,6 @@ export default async function OrdersTable({
       <thead className=''>
         <tr className='border-b border-slate-200'>
           <th className='text-center py-4 rounded-l-xl text-slate-500 font-semibold text-base'>Order ID</th>
-          <th className='table-header-data'>Customer Name</th>
           <th className='table-header-data'>Company</th>
           <th className='table-header-data'>Order Weight</th>
           <th className='table-header-data'>Order Value</th>
@@ -38,7 +37,6 @@ export default async function OrdersTable({
               <p className='font-bold'>{formatId(order?.ID)}</p>
               <p className='text-xs'>{formatDate(order?.CreatedAt)}</p>
             </td>
-            <td className='table-data'>{order?.CustomerName}</td>
             <td className='table-data'>{order?.CompanyName}</td>
             <td className='table-data'>{order?.OrderWeight}&nbsp;gm</td>
             <td className='table-data'>{handleCurrencyFormat(order?.OrderValue)}</td>

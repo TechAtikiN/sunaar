@@ -32,7 +32,7 @@ func GetOrders(c *fiber.Ctx) error {
 	// get all orders
 	var orders []models.Order
 
-	// check if customer id is present in query params
+	// // check if customer id is present in query params
 	if customerID != "" {
 		// fetch orders by customer id
 		if err := initializers.DB.Preload("Products").Where("customer_id = ?", customerID).Find(&orders).Error; err != nil {
@@ -56,6 +56,8 @@ func GetOrders(c *fiber.Ctx) error {
 			})
 		}
 	}
+
+	fmt.Println("orders", orders)
 
 	// return response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
@@ -146,7 +148,7 @@ func CreateOrder(c *fiber.Ctx) error {
 		}
 
 		orderWeight += weight * float64(orderProduct.Quantity)
-		orderValue += 6000 * float64(orderProduct.Quantity)
+		orderValue += 6000 * float64(orderWeight)
 	}
 
 	fmt.Println("order weight", orderWeight)
@@ -154,6 +156,7 @@ func CreateOrder(c *fiber.Ctx) error {
 	// create order
 	order := models.Order{
 		CustomerID:  payload.CustomerID,
+		CompanyName: customer.CompanyName,
 		OrderRemark: payload.OrderRemark,
 		OrderValue:  fmt.Sprintf("%.2f", orderValue),
 		OrderWeight: fmt.Sprintf("%.2f", orderWeight),

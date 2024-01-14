@@ -19,10 +19,10 @@ export default function CustomerDetailsForm() {
       <h2 className='font-bold text-slate-700'>Order Details</h2>
       <div className='w-full grid grid-cols-6 gap-x-4 gap-y-5 p-2'>
         <div className='col-span-3 flex flex-col space-y-2'>
-          <label className='dashboard-form-label' htmlFor='id'>Customer ID</label>
+          <label className='dashboard-form-label' htmlFor='customer_id'>Customer ID</label>
           <input
             required
-            name='id'
+            name='customer_id'
             onChange={(e) => { handleCustomerFetchDetails(e.target.value) }}
             type='text'
             className='dashboard-form-input text-sm p-2'
@@ -32,17 +32,26 @@ export default function CustomerDetailsForm() {
         <div className='col-span-3 flex flex-col space-y-2'>
           <label className='dashboard-form-label' htmlFor='name'>Customer Name</label>
           <input
-            name='name'
             value={`${customer?.FirstName || ''} ${customer?.LastName || ''}`}
             disabled
             type='text'
             className='dashboard-form-input text-sm p-2'
           />
         </div>
+
+
+        <div className='col-span-3 flex flex-col space-y-2'>
+          <label className='dashboard-form-label' htmlFor='company_name'>Company Name</label>
+          <input
+            name='company_name'
+            type='text'
+            className='dashboard-form-input text-sm p-2'
+          />
+        </div>
+
         <div className='col-span-3 flex flex-col space-y-2'>
           <label className='dashboard-form-label' htmlFor='email'>Customer Email</label>
           <input
-            name='email'
             value={customer?.Email || ''}
             disabled
             type='text'
@@ -53,7 +62,6 @@ export default function CustomerDetailsForm() {
         <div className='col-span-3 flex flex-col space-y-2'>
           <label className='dashboard-form-label' htmlFor='phone'>Customer Contact No.</label>
           <input
-            name='phone'
             value={customer?.Phone || ''}
             disabled
             type='text'
@@ -64,7 +72,6 @@ export default function CustomerDetailsForm() {
         <div className='col-span-3 flex flex-col space-y-2'>
           <label className='dashboard-form-label' htmlFor='status'>Status</label>
           <input
-            name='status'
             disabled
             type='text'
             defaultValue={'Active'}
@@ -73,9 +80,9 @@ export default function CustomerDetailsForm() {
         </div>
 
         <div className='col-span-6 flex flex-col space-y-2'>
-          <label className='dashboard-form-label' htmlFor='remark'>Order Remark</label>
+          <label className='dashboard-form-label' htmlFor='order_remark'>Order Remark</label>
           <textarea
-            name='remark'
+            name='order_remark'
             rows={2} className='dashboard-form-input'
           ></textarea>
         </div>

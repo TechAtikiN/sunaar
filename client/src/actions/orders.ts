@@ -57,3 +57,28 @@ export async function updateOrderStatus(id: string, status: string) {
     console.log(error)
   }
 }
+
+export async function createOrder(details: any, products: any) {
+  const token = cookies().get('token')
+
+  const data = {
+    ...details,
+    order_products: products
+  }
+
+  try {
+    const response = await fetch(`${BASE_URL}api/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      },
+      body: JSON.stringify(data)
+    })
+    const { status } = await response.json()
+    return status
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+}

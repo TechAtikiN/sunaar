@@ -28,7 +28,7 @@ export default function PurchaseOrders({
 
       <div className='section my-5'>
         {/* Filters */}
-        <TableFilters searchPlaceholder='Filter using Customer Name or Company Name' />
+        <TableFilters searchPlaceholder='Filter using Company Name' />
 
         {/* Table section */}
         <Suspense key={query + currentPage} fallback={<LoadingSpinner />}>
