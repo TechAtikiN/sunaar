@@ -40,7 +40,6 @@ export default function ActionDetails({ customerID, orderID }: { customerID?: st
             View details
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>Edit details</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

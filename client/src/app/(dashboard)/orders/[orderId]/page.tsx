@@ -52,8 +52,8 @@ export default async function OrderDetails({ params }: { params: { orderId: stri
 
         {/* Order Details */}
         <div className='py-2'>
-          <div className='grid grid-cols-2 gap-x-6 border border-slate-200 p-4 rounded-md my-2'>
-            <div className='border-r border-slate-200'>
+          <div className='border border-slate-200 p-4 rounded-md my-2'>
+            <div className=''>
               <h3 className='text-lg font-bold my-2'>Overview</h3>
               <div className='grid grid-cols-2 gap-y-4'>
                 <p className='text-sm text-slate-600'><span className='font-bold'>Company Name</span>: {orderDetails?.CompanyName}</p>
@@ -65,15 +65,7 @@ export default async function OrderDetails({ params }: { params: { orderId: stri
                     {orderDetails?.Status}
                   </span>
                 </p>
-              </div>
-            </div>
-
-            <div className='ml-14'>
-              <h3 className='text-lg font-bold my-2'>Customer Details</h3>
-              <div className='grid grid-cols-2 gap-y-4'>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Name</span>: {orderDetails?.CustomerName}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Email</span>: {orderDetails?.CustomerEmail}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Contact No.</span>: {orderDetails?.CustomerPhone}</p>
+                <p className='text-sm text-slate-600'><span className='font-bold'>Order Remark</span>: {orderDetails?.OrderRemark}</p>
               </div>
             </div>
           </div>

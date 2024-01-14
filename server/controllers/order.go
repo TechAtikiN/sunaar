@@ -32,7 +32,7 @@ func GetOrders(c *fiber.Ctx) error {
 	// get all orders
 	var orders []models.Order
 
-	// // check if customer id is present in query params
+	// check if customer id is present in query params
 	if customerID != "" {
 		// fetch orders by customer id
 		if err := initializers.DB.Preload("Products").Where("customer_id = ?", customerID).Find(&orders).Error; err != nil {
@@ -42,7 +42,7 @@ func GetOrders(c *fiber.Ctx) error {
 		}
 	} else if query != "" {
 		// fetching all orders with pagination and search query, search for customer name, customer email, and company name
-		if err := initializers.DB.Preload("Products").Where("customer_name LIKE ? OR customer_email LIKE ? OR company_name LIKE ?", "%"+query+"%", "%"+query+"%", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
+		if err := initializers.DB.Preload("Products").Where("company_name LIKE ?", "%"+query+"%").Offset((currentPageInt - 1) * limitInt).Limit(limitInt).Order("created_at desc").Find(&orders).Error; err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 				"status": "fail", "message": "failed to get orders",
 			})
@@ -56,8 +56,6 @@ func GetOrders(c *fiber.Ctx) error {
 			})
 		}
 	}
-
-	fmt.Println("orders", orders)
 
 	// return response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
