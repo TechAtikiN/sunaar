@@ -13,6 +13,7 @@ import { formatDate, handleCurrencyFormat } from '@/lib/utils'
 // default imports
 import UpdateOrderStatus from '@/components/orders/UpdateOrderStatus'
 import ProductsData from '@/components/orders/ProductsData'
+import Link from 'next/link'
 
 export default async function OrderDetails({ params }: { params: { orderId: string } }) {
   const orderDetails: OrderDetails | undefined = await getOrderById(params.orderId)
@@ -53,20 +54,26 @@ export default async function OrderDetails({ params }: { params: { orderId: stri
         {/* Order Details */}
         <div className='py-2'>
           <div className='border border-slate-200 p-4 rounded-md my-2'>
-            <div className=''>
-              <h3 className='text-lg font-bold my-2'>Overview</h3>
-              <div className='grid grid-cols-2 gap-y-4'>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Company Name</span>: {orderDetails?.CompanyName}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Order Weight.</span>: {orderDetails?.OrderWeight}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Order Value</span>: {handleCurrencyFormat(orderDetails?.OrderValue as number)}</p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Order Status</span>:
-                  <span className={`badge mx-2 ${orderDetails?.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : orderDetails?.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
-                  >
-                    {orderDetails?.Status}
-                  </span>
-                </p>
-                <p className='text-sm text-slate-600'><span className='font-bold'>Order Remark</span>: {orderDetails?.OrderRemark}</p>
-              </div>
+            <div className='flex justify-between items-center mb-2'>
+              <h3 className='text-lg font-bold'>Overview</h3>
+              <Link
+                className='hover:bg-gray-200 rounded-full border border-slate-700 p-1 text-slate-700 text-xs font-semibold shadow-md'
+                href={`/customers/${orderDetails?.CustomerID}`}
+              >
+                View Customer
+              </Link>
+            </div>
+            <div className='grid grid-cols-3 gap-y-4'>
+              <p className='text-sm text-slate-600'><span className='font-bold'>Company Name</span>: {orderDetails?.CompanyName}</p>
+              <p className='text-sm text-slate-600'><span className='font-bold'>Order Weight.</span>: {orderDetails?.OrderWeight}</p>
+              <p className='text-sm text-slate-600'><span className='font-bold'>Order Value</span>: {handleCurrencyFormat(orderDetails?.OrderValue as number)}</p>
+              <p className='text-sm text-slate-600'><span className='font-bold'>Order Status</span>:
+                <span className={`badge mx-2 ${orderDetails?.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : orderDetails?.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                >
+                  {orderDetails?.Status}
+                </span>
+              </p>
+              <p className='text-sm text-slate-600'><span className='font-bold'>Order Remark</span>: {orderDetails?.OrderRemark}</p>
             </div>
           </div>
 

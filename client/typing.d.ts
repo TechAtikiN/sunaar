@@ -53,9 +53,6 @@ type OrderDetails = {
   CustomerID: string
   Products: Product[]
   Status: string
-  CustomerName: string
-  CustomerEmail: string
-  CustomerPhone: string
   CompanyName: string
   OrderRemark: string
   CreatedAt: string

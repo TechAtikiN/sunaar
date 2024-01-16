@@ -64,7 +64,10 @@ function StatewiseDistribution() {
         size: '70%',
       },
       slicedOffset: 5,
-    }
+    },
+    credits: {
+      enabled: false,
+    },
   };
 
   return (

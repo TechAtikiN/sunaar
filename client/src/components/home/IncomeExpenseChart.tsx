@@ -39,7 +39,10 @@ function IncomeExpenseChart() {
       name: 'Expense',
       data: [5020, 21000, 11500, 6000, 3500, 5000, 1500]
     },
-    ]
+    ],
+    credits: {
+      enabled: false,
+    },
   };
 
   return (
