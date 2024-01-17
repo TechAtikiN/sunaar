@@ -5,8 +5,6 @@ import { formatDate, formatId, handleCurrencyFormat } from '@/lib/utils'
 import ActionDetails from '../globals/ActionDetails'
 
 export default async function OrdersTable({ orders }: { orders: OrderDetails[] | undefined }) {
-  // Fetch customers 
-
   return (
     <table className='w-full border border-gray-200 my-4 p-4 rounded-lg'>
       <thead className=''>

@@ -33,7 +33,7 @@ export default async function CustomersPage({
         <div className='section my-5'>
 
           {/* Filters and Pagination */}
-          <TableFilters currentPage={currentPage} hasMore={customerResponse?.hasMore || false} searchPlaceholder='Filter using Name, Email or Company' />
+          <TableFilters downloadAbleData={customerResponse?.customers} currentPage={currentPage} hasMore={customerResponse?.hasMore || false} searchPlaceholder='Filter using Name, Email or Company' />
 
           {/* Table */}
           <Suspense key={query + currentPage} fallback={<LoadingSpinner />}>

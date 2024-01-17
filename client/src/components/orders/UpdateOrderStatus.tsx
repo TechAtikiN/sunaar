@@ -39,8 +39,8 @@ export default function UpdateOrderStatus({ orderId }: { orderId: string | undef
 
   return (
     <Dialog>
-      <DialogTrigger className='dashboard-btn py-2 font-normal text-sm'>
-        Change Status
+      <DialogTrigger>
+        <Button className='bg-slate-800 text-white' variant={'outline'}>Change Status</Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>

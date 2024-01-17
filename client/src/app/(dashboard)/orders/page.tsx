@@ -31,14 +31,14 @@ export default async function PurchaseOrders({
 
       <div className='section my-5'>
         {/* Filters */}
-        <TableFilters currentPage={currentPage} hasMore={orderResponse?.hasMore || false} searchPlaceholder='Filter using Company Name' />
+        <TableFilters downloadAbleData={orderResponse?.orders} currentPage={currentPage} hasMore={orderResponse?.hasMore || false} searchPlaceholder='Filter using Company Name' />
 
         {/* Table section */}
         <Suspense key={query + currentPage} fallback={<LoadingSpinner />}>
           <OrdersTable orders={orderResponse?.orders} />
         </Suspense>
-
       </div>
+
     </div>
   )
 }

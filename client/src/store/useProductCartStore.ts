@@ -8,19 +8,13 @@ interface ProductCartStore {
 }
 
 export const useProductCartStore = create<ProductCartStore>()(
-  persist(
-    (set, get) => ({
-      products: [],
-      addProduct: (product: CartProduct) => set(state => ({
-        products: [...state.products, product],
-      })),
-      removeProduct: (item: CartProduct) => set(state => ({
-        products: state.products.filter(i => i.product.ID !== item.product.ID),
-      })),
-    }),
-    {
-      name: 'cartProducts',
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
+  (set, get) => ({
+    products: [],
+    addProduct: (product: CartProduct) => set(state => ({
+      products: [...state.products, product],
+    })),
+    removeProduct: (item: CartProduct) => set(state => ({
+      products: state.products.filter(i => i.product.ID !== item.product.ID),
+    })),
+  }),
 )
