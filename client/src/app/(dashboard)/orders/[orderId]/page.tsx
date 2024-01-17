@@ -1,19 +1,11 @@
 // named imports
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from '@/components/ui/tooltip'
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { DownloadIcon } from 'lucide-react'
 import { getOrderById } from '@/actions/orders'
-import { formatDate, handleCurrencyFormat } from '@/lib/utils'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { formatId } from '@/lib/utils'
 
 // default imports
-import UpdateOrderStatus from '@/components/orders/UpdateOrderStatus'
-import ProductsData from '@/components/orders/ProductsData'
-import Link from 'next/link'
+import OrderDetailsSection from '@/components/orders/OrderDetailsSection'
+
 
 export default async function OrderDetails({ params }: { params: { orderId: string } }) {
   const orderDetails: OrderDetails | undefined = await getOrderById(params.orderId)
@@ -32,59 +24,7 @@ export default async function OrderDetails({ params }: { params: { orderId: stri
       <div className='section my-5'>
 
         {/* Order Status */}
-        <div className='flex justify-between items-center'>
-          <div className='flex flex-col' space-y-1>
-            <p className=' font-semibold text-slate-800'>Date: {formatDate(orderDetails?.CreatedAt || '')}</p>
-          </div>
-          <div className='flex items-center space-x-4'>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <DownloadIcon className='h-6 w-6' />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Download Invoice</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <UpdateOrderStatus orderId={orderDetails?.ID} />
-          </div>
-        </div>
-
-        {/* Order Details */}
-        <div className='py-2'>
-          <div className='border border-slate-200 p-4 rounded-md my-2'>
-            <div className='flex justify-between items-center mb-2'>
-              <h3 className='text-lg font-bold'>Overview</h3>
-              <Link
-                className='hover:bg-gray-200 rounded-full border border-slate-700 p-1 text-slate-700 text-xs font-semibold shadow-md'
-                href={`/customers/${orderDetails?.CustomerID}`}
-              >
-                View Customer
-              </Link>
-            </div>
-            <div className='grid grid-cols-3 gap-y-4'>
-              <p className='text-sm text-slate-600'><span className='font-bold'>Company Name</span>: {orderDetails?.CompanyName}</p>
-              <p className='text-sm text-slate-600'><span className='font-bold'>Order Weight.</span>: {orderDetails?.OrderWeight}</p>
-              <p className='text-sm text-slate-600'><span className='font-bold'>Order Value</span>: {handleCurrencyFormat(orderDetails?.OrderValue as number)}</p>
-              <p className='text-sm text-slate-600'><span className='font-bold'>Order Status</span>:
-                <span className={`badge mx-2 ${orderDetails?.Status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : orderDetails?.Status === 'Completed' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
-                >
-                  {orderDetails?.Status}
-                </span>
-              </p>
-              <p className='text-sm text-slate-600'><span className='font-bold'>Order Remark</span>: {orderDetails?.OrderRemark}</p>
-            </div>
-          </div>
-
-          {/* product details  */}
-          <div className='py-3'>
-            <h3 className='text-lg font-bold my-2'>Products Detail</h3>
-            <div className='h-[311px] overflow-auto py-1'>
-              <ProductsData products={orderDetails?.Products} />
-            </div>
-          </div>
-        </div>
+        <OrderDetailsSection orderDetails={orderDetails} />
       </div>
     </div>
   )

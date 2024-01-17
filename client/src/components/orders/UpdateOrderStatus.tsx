@@ -40,7 +40,7 @@ export default function UpdateOrderStatus({ orderId }: { orderId: string | undef
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className='bg-slate-800 text-white' variant={'outline'}>Change Status</Button>
+        <Button className='bg-slate-800 text-white' variant={'outline'}>Update Status</Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>

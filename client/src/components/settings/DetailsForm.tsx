@@ -102,7 +102,7 @@ export default function DetailsForm({ isEditing, activeTab }: { isEditing: boole
         </div>
       ) : (
         // Help tab
-        <div className='bg-blue-100 p-5 rounded-md border border-blue-200 shadow-md'>
+        <div className='p-5 rounded-md border border-blue-200 shadow-md h-[490px]'>
           <p>Welcome to the <span className='font-bold text-lg'>Sunaar</span> Gold Merchants Dashboard, your central hub for managing various aspects of your gold business. This help page is designed to guide you through the key features and functionalities of the dashboard.
           </p>
           <ul>

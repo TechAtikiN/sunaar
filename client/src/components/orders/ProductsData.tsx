@@ -1,8 +1,8 @@
 'use client'
 
 // named imports
-import { useRouter } from 'next/navigation'
 import { formatId } from '@/lib/utils'
+import { useToast } from '../ui/use-toast'
 
 // default imports
 import Image from 'next/image'
@@ -12,7 +12,16 @@ interface Props {
 }
 
 export default function ProductsData({ products }: Props) {
-  const router = useRouter()
+  const { toast } = useToast()
+
+  const handleClick = (product: Product) => {
+    navigator.clipboard.writeText(product?.ID || '')
+    toast({
+      title: `Copied ID ${formatId(product?.ID)}`,
+      description: 'Copied Product ID to clipboard ',
+      duration: 3000,
+    })
+  }
 
   return (
     <table className='w-full'>
@@ -31,6 +40,7 @@ export default function ProductsData({ products }: Props) {
         {products?.map((product, index) => (
           <tr
             key={product?.ID}
+            onClick={() => handleClick(product)}
             className='border-b hover:cursor-pointer border-gray-200 hover:bg-slate-100/50'
           >
             <td className='py-2 text-sm flex items-center justify-center'>

@@ -13,7 +13,7 @@ export default function UserDetails() {
   const [isEditing, setIsEditing] = useState(false)
 
   return (
-    <div className='mx-3'>
+    <div className='mx-3 h-[580px]'>
       {/* Settings tab section */}
       <SettingsTab activeTab={activeTab} setActiveTab={setActiveTab} />
 
