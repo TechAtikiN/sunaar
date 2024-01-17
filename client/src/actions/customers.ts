@@ -15,8 +15,9 @@ export async function getAllCustomers(query: string, currentPage: number = 1, li
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const customers = await response.json()
-    return customers
+    const { customers, hasMore }: { customers: Customer[], hasMore: boolean } = await response.json()
+    const customerResponse = { customers, hasMore }
+    return customerResponse
   } catch (error) {
     console.log(error)
   }

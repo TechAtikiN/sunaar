@@ -43,6 +43,11 @@ type Customer = {
   CreatedAt: string
 }
 
+type CustomerResponse = {
+  customers: Customer[]
+  hasMore: boolean
+} | undefined
+
 type CustomerDetails = {
   customer: Customer
   orders: Order[]
@@ -59,3 +64,8 @@ type OrderDetails = {
   OrderValue: number
   OrderWeight: number
 }
+
+type OrderResponse = {
+  orders: OrderDetails[]
+  hasMore: boolean
+} | undefined

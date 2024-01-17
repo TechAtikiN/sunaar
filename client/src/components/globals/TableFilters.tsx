@@ -7,7 +7,16 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { DownloadIcon } from 'lucide-react'
 
-export default function TableFilters({ searchPlaceholder }: { searchPlaceholder: string }) {
+// default imports
+import Pagination from './Pagination'
+
+interface Props {
+  currentPage: number
+  searchPlaceholder: string
+  hasMore: boolean
+}
+
+export default function TableFilters({ searchPlaceholder, currentPage, hasMore }: Props) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
@@ -33,9 +42,12 @@ export default function TableFilters({ searchPlaceholder }: { searchPlaceholder:
         className='max-w-sm text-slate-800 placeholder:text-slate-700'
         defaultValue={searchParams.get('query')?.toString()}
       />
-      <Button>
-        <DownloadIcon className='h-4 w-4' />
-      </Button>
+      <div className='flex items-center justify-center space-x-2'>
+        <Pagination currentPage={currentPage} hasMore={hasMore} />
+        <Button className='mt-3'>
+          <DownloadIcon className='h-4 w-4' />
+        </Button>
+      </div>
     </div>
   )
 }

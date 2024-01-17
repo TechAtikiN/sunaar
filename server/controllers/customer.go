@@ -32,6 +32,19 @@ func GetCustomers(c *fiber.Ctx) error {
 	// get all the customer from the database
 	var customers []models.Customer
 
+	// totalCustomers of customers
+	var totalCustomers int64
+
+	if err := initializers.DB.Model(&models.Customer{}).Count(&totalCustomers).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": "failed to get customers",
+		})
+	}
+
+	var totalPages int64 = totalCustomers / int64(limitInt)
+
+	hasMore := currentPageInt - 1 < int(totalPages)
+
 	// check if there is a query in the request query and get the customers from the database with pagination
 	if query != "" {
 		// get the customers from the database with pagination and search query, search for name, email, comapany name
@@ -53,7 +66,7 @@ func GetCustomers(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status":    "success",
 		"message":   "Customers retrieved successfully",
-		"customers": &customers,
+		"customers": &customers, "totalCustomers": totalCustomers, "hasMore": hasMore,
 	})
 }
 

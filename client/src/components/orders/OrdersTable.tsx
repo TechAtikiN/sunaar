@@ -1,21 +1,11 @@
 // named imports
 import { formatDate, formatId, handleCurrencyFormat } from '@/lib/utils'
-import { getAllOrders } from '@/actions/orders'
 
 // default imports
 import ActionDetails from '../globals/ActionDetails'
 
-export default async function OrdersTable({
-  query,
-  currentPage,
-  limit = 10
-}: {
-  query: string,
-  currentPage: number,
-  limit?: number
-}) {
+export default async function OrdersTable({ orders }: { orders: OrderDetails[] | undefined }) {
   // Fetch customers 
-  const { orders }: { orders: OrderDetails[] } = await getAllOrders(query, currentPage, limit)
 
   return (
     <table className='w-full border border-gray-200 my-4 p-4 rounded-lg'>
@@ -31,7 +21,7 @@ export default async function OrdersTable({
       </thead>
 
       <tbody>
-        {orders?.length > 0 ? orders?.map((order: OrderDetails) => (
+        {orders && orders?.length > 0 ? orders?.map((order: OrderDetails) => (
           <tr key={order?.ID} className='hover:bg-slate-100'>
             <td className='px-2 py-3 table-data'>
               <p className='font-bold'>{formatId(order?.ID)}</p>

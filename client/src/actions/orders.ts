@@ -14,8 +14,8 @@ export async function getAllOrders(query: string, currentPage: number = 1, limit
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const orders = await response.json()
-    return orders
+    const {orders, hasMore}: { orders: OrderDetails[], hasMore: boolean } = await response.json()
+    return { orders, hasMore }
   } catch (error) {
     console.log(error)
   }

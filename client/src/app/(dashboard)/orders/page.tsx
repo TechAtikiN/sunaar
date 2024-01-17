@@ -1,5 +1,6 @@
 // named imports
 import { Suspense } from 'react'
+import { getAllOrders } from '@/actions/orders'
 import { formatQueryParam } from '@/lib/utils'
 
 // default imports
@@ -8,7 +9,7 @@ import OrdersTable from '@/components/orders/OrdersTable'
 import PurchaseOrdersHeader from '@/components/orders/PurchaseOrdersHeader'
 import TableFilters from '@/components/globals/TableFilters'
 
-export default function PurchaseOrders({
+export default async function PurchaseOrders({
   searchParams,
 }: {
   searchParams?: {
@@ -20,7 +21,9 @@ export default function PurchaseOrders({
   let query = searchParams?.query || ''
   query = formatQueryParam(query)
   const currentPage = Number(searchParams?.page) || 1
-  const limit = Number(searchParams?.limit) || 8
+  const limit = Number(searchParams?.limit) || 7
+
+  const orderResponse: OrderResponse = await getAllOrders(query, currentPage, limit)
 
   return (
     <div className='page h-screen'>
@@ -28,11 +31,11 @@ export default function PurchaseOrders({
 
       <div className='section my-5'>
         {/* Filters */}
-        <TableFilters searchPlaceholder='Filter using Company Name' />
+        <TableFilters currentPage={currentPage} hasMore={orderResponse?.hasMore || false} searchPlaceholder='Filter using Company Name' />
 
         {/* Table section */}
         <Suspense key={query + currentPage} fallback={<LoadingSpinner />}>
-          <OrdersTable query={query} currentPage={currentPage} limit={limit} />
+          <OrdersTable orders={orderResponse?.orders} />
         </Suspense>
 
       </div>

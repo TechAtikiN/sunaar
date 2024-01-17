@@ -32,6 +32,19 @@ func GetOrders(c *fiber.Ctx) error {
 	// get all orders
 	var orders []models.Order
 
+	var totalOrders int64
+
+	// get totalOrders of orders
+	if err := initializers.DB.Model(&models.Order{}).Count(&totalOrders).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail", "message": "failed to get orders",
+		})
+	}
+	
+	var totalPages int64 = totalOrders / int64(limitInt)
+
+	hasMore := currentPageInt - 1 < int(totalPages)
+
 	// check if customer id is present in query params
 	if customerID != "" {
 		// fetch orders by customer id
@@ -59,7 +72,8 @@ func GetOrders(c *fiber.Ctx) error {
 
 	// return response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status": "success", "orders": &orders,
+		"status": "success",
+		"orders":   orders, "totalOrders": totalOrders, "hasMore": hasMore,
 	})
 }
 
