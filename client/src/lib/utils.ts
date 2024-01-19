@@ -12,17 +12,6 @@ export const handleCurrencyFormat = (value: number) => {
     }).format(value)
 }
 
-export const getUser = () => {
-  if (typeof window !== 'undefined') {
-  // Perform localStorage action
-    const user = localStorage.getItem('token')
-    if (user) {
-    return JSON.parse(user)
-  }
-  return null
-  }
-}
-
 export const formatDate = (date: string) => {
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',

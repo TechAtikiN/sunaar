@@ -1,15 +1,15 @@
 'use client'
+
 // named imports
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useToast } from '../ui/use-toast'
 import { Montserrat } from 'next/font/google'
 import { register } from '@/actions/auth'
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
+import { useUserStore } from '@/store/useUserStore'
 
 // default imports
 import Link from 'next/link'
-import { useUserStore } from '@/store/useUserStore'
 
 const features = [
   {

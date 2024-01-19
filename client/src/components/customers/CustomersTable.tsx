@@ -1,16 +1,14 @@
 // named imports
-import { getAllCustomers } from '@/actions/customers'
+import { formatId } from '@/lib/utils'
 
 // default imports
 import ActionDetails from '../globals/ActionDetails'
-import { formatId } from '@/lib/utils'
 
 interface Props {
   customers: Customer[] | undefined
 }
 
-export default async function CustomersTable({ customers }: Props) {
-  // Fetch customers 
+export default function CustomersTable({ customers }: Props) {
   return (
     <div className='h-[500px]'>
       <table className='w-full border border-gray-200 my-4 p-4 rounded-lg'>

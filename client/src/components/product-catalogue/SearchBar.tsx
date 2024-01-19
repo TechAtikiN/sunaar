@@ -1,13 +1,11 @@
 'use client'
 
 // named imports
-import { useState } from 'react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 import { Input } from '../ui/input'
 
 export default function SearchBar() {
-  const [selectedCategory, setSelectedCategory] = useState('')
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()

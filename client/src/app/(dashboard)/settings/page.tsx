@@ -7,7 +7,7 @@ export default function SettingsPage() {
       <div className='section'>
         <h2 className='heading'>Account Settings</h2>
 
-        <UserDetails />
+        {/* <UserDetails /> */}
       </div>
     </div>
   )

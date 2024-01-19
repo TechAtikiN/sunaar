@@ -1,6 +1,5 @@
 // named imports
-import { ArrowRightOnRectangleIcon, ChartBarSquareIcon, CubeTransparentIcon, CurrencyRupeeIcon, HomeIcon, UsersIcon } from '@heroicons/react/20/solid'
-import { CircleStackIcon, Cog8ToothIcon } from '@heroicons/react/24/solid'
+import { CircleStackIcon, Cog8ToothIcon, CubeTransparentIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/solid'
 
 export const navLinks = [
   {

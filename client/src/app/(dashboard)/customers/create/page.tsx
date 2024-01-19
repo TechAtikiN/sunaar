@@ -1,7 +1,7 @@
 // default imports
 import CreateCustomerForm from '@/components/customers/CreateCustomerForm'
 
-export default async function AddCustomerPage() {
+export default function AddCustomerPage() {
   return (
     <div className='page'>
       <div>

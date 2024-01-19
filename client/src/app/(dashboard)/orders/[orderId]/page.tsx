@@ -1,7 +1,6 @@
 // named imports
 import { getOrderById } from '@/actions/orders'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { formatId } from '@/lib/utils'
 
 // default imports
 import OrderDetailsSection from '@/components/orders/OrderDetailsSection'

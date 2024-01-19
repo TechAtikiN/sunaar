@@ -15,7 +15,7 @@ export default function OrderDetailsSection({ orderDetails }: { orderDetails: Or
   const { toPDF, targetRef } = usePDF({ filename: 'invoice.pdf' })
 
   return (
-    <>
+    <div>
       <div className='flex justify-between items-center'>
         <div className='flex flex-col' space-y-1>
           <p className=' font-semibold text-slate-800'>Date: {formatDate(orderDetails?.CreatedAt || '')}</p>
@@ -61,6 +61,6 @@ export default function OrderDetailsSection({ orderDetails }: { orderDetails: Or
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

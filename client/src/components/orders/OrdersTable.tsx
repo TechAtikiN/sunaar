@@ -4,7 +4,7 @@ import { formatDate, formatId, handleCurrencyFormat } from '@/lib/utils'
 // default imports
 import ActionDetails from '../globals/ActionDetails'
 
-export default async function OrdersTable({ orders }: { orders: OrderDetails[] | undefined }) {
+export default function OrdersTable({ orders }: { orders: OrderDetails[] | undefined }) {
   return (
     <table className='w-full border border-gray-200 my-4 p-4 rounded-lg'>
       <thead className=''>
