@@ -31,7 +31,7 @@ export default function UploadProduct() {
         })
       })
     })
-  }, [])
+  }, [productListRef])
   return (
     <div>
       <input

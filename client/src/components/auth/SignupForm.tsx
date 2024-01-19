@@ -45,9 +45,7 @@ const SignupForm = () => {
         toast({
           title: "Account created.",
           description: "We've created your account for you.",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
+          duration: 3000
         })
         router.push('/home')
       }
@@ -55,9 +53,7 @@ const SignupForm = () => {
       toast({
         title: "An error occurred.",
         description: "Unable to create your account.",
-        status: "error",
         duration: 3000,
-        isClosable: true,
       })
     }
   }

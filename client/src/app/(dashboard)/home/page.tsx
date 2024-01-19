@@ -9,7 +9,7 @@ import CommodityRates from '@/components/home/CommodityRates'
 import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
 
-export async function HomePage() {
+export default async function HomePage() {
   const data = await getDashboardData()
 
   return (
@@ -57,5 +57,3 @@ export async function HomePage() {
     </div>
   )
 }
-
-export default HomePage
