@@ -32,7 +32,6 @@ export default function ProductsData({ products }: Props) {
           <th className='py-3 font-semibold text-sm'>Name</th>
           <th className='py-3 font-semibold text-sm'>Category</th>
           <th className='py-3 font-semibold text-sm'>Weight</th>
-          <th className='py-3 font-semibold text-sm '>Quantity</th>
         </tr>
       </thead>
 
@@ -57,7 +56,6 @@ export default function ProductsData({ products }: Props) {
             <td className='py-2 text-sm text-center'>{product?.Name}</td>
             <td className='py-3 text-sm text-center'>{product?.Category}</td>
             <td className='py-3 text-sm text-center'>{product?.Weight}gm</td>
-            <td className='py-3 text-sm text-center'>6</td>
           </tr>
         ))}
       </tbody>

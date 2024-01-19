@@ -107,14 +107,19 @@ export default function DetailsForm({ isEditing, activeTab }: { isEditing: boole
           </p>
           <ul>
             <li className='mt-5'>
-              <span className='font-bold'>Dashboard</span> - Gives you a quick overview of your business and its performance.
+              <span className='font-bold'>Dashboard</span> - Gives you a quick overview of your business and its performance. Highlights the key business metrics, real-time Gold and Silver prices, visualizationd and much more.
             </li>
             <li className='mt-5'>
-              <span className='font-bold'>Orders</span> - List of all the orders you have received from your customers. You can also view the details of each order and update the status of the order.
+              <span className='font-bold'>Orders</span> - List of all the orders you have received from your customers. You can create new orders, view the details of each order and update the status of the order. Also, download the order invoice(PDF format) and order records(CSV format).
             </li>
             <li className='mt-5'>
-              <span className='font-bold'>Customers</span> - List of all the customers who have placed orders with you. You can also view the details of each customer and update their details.
+              <span className='font-bold'>Customers</span> - List of all the customers who have placed orders with you. You can also view the details of each customer and update their details. Also, download the customer records(CSV format).
             </li>
+
+            <p className='mt-5'>
+              Customers and Orders feature have Pagination(Server-Side) and search options on the tables.
+            </p>
+
             <li className='mt-5'>
               <span className='font-bold'>Product Catalogue</span> - List of all the products you have added to your inventory. You can also view the details of each product and update their details.
             </li>

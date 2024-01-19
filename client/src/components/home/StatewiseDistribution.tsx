@@ -43,13 +43,13 @@ function StatewiseDistribution() {
         z: 235
       }],
       colors: [
-        '#4caefe',
-        '#3dc3e8',
-        '#2dd9db',
-        '#1feeaf',
-        '#0ff3a0',
-        '#00e887',
-        '#23e274'
+        '#F99417',
+        '#FAA22E',
+        '#FAB045',
+        '#FAC15C',
+        '#FAD274',
+        '#FAE38B',
+        '#FAF4A2'
       ]
     }],
     // reduce the margin
@@ -71,7 +71,7 @@ function StatewiseDistribution() {
   };
 
   return (
-    <div className=''>
+    <div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )

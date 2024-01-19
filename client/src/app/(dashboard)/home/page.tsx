@@ -1,5 +1,5 @@
 // named imports
-import { getRates } from '../../../actions/getRates'
+import { getDashboardData } from '@/actions/home'
 
 // default imports
 import IncomeExpenseChart from '@/components/home/IncomeExpenseChart'
@@ -10,10 +10,12 @@ import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
 
 export async function HomePage() {
+  const data = await getDashboardData()
+
   return (
     <div className='page grid grid-cols-6 gap-5'>
       {/* KPI listing */}
-      <KPIListing />
+      <KPIListing revenue={data?.totalRevenue} orders={data?.totalOrders} customers={data?.totalCustomers} />
 
       {/* Commodity rates */}
       <CommodityRates />
@@ -48,10 +50,10 @@ export async function HomePage() {
       </div>
 
       {/* Customer Analytics */}
-      <CustomerAnalytics />
+      <CustomerAnalytics topOrders={data?.topOrders} />
 
       {/* Recent Order */}
-      <RecentOrders />
+      <RecentOrders recentOrders={data?.recentOrders} />
     </div>
   )
 }

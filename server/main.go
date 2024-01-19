@@ -81,6 +81,9 @@ func main() {
 		router.Get("/:id", middleware.DeserializeUser, controllers.GetProduct)
 	})
 
+	// register the dashboard route
+	micro.Get("/dashboard", middleware.DeserializeUser, controllers.GetDashboard)
+
 	micro.Get("/users/me", middleware.DeserializeUser, controllers.GetUser)
 
 	micro.All("*", func(c *fiber.Ctx) error {

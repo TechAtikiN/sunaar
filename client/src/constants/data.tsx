@@ -1,34 +1,3 @@
-// named imports
-import {
-  CircleStackIcon,
-  Square2StackIcon,
-  TableCellsIcon,
-  UsersIcon
-} from '@heroicons/react/20/solid'
-
-export const data = [
-  {
-    title: 'Sales Target',
-    value: 900000,
-    icon: <Square2StackIcon className='h-7 w-7 text-purple-500' />
-  },
-  {
-    title: 'Sales',
-    value: 100000,
-    icon: <TableCellsIcon className='h-7 w-7 text-emerald-500' />
-  },
-  {
-    title: 'Orders',
-    value: 300000,
-    icon: <CircleStackIcon className='h-7 w-7 text-yellow-500' />
-  },
-  {
-    title: 'Customers',
-    value: 250,
-    icon: <UsersIcon className='h-7 w-7 text-lime-500' />
-  },
-]
-
 export const customerData = [
   {
     name: 'R. K. Sharma',

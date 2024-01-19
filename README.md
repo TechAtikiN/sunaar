@@ -1,20 +1,15 @@
 # Sunaar🚀 
 
-A **Full-stack**, **modern**, and **visually** captivating web app providing a **comprehensive** and **intuitive** experience
-
-It is designed to empower businesses in **managing** various aspects, including **Customers**, **Orders**, **Products**, **Sales**, and more.
-
- Specifically in my project, I am targeting the **Gold** and **Jewelry business**.✨
+Sunaar is a  **Full-stack**, **modern**, and **visually** captivating web app to empower businesses in **managing** various aspects, including **Customers**, **Orders**, **Products**, **Sales**, and more.
 
 ## Key Features📋
 
-- [x] Analytics Dashboard
-- [x] Create, Read, Update, Delete (**CRUD**) operations
-- [x] **Filter**, **Sort**, and **Search** operations 
-- [x] Server-Side **Pagination**
-- [x] Intuitive and user-friendly UI with **notifications**
-- [x] Export data to **CSV** and **PDF** files
-- [x] Use of **Server Components** & **Sever Actions**
+- [x] Analytics Dashboard with **Business Metrics**, **Visuals**  and **Real-Time** Gold and Silver prices
+- [x] Create, Read Update, Delete **Customer** and  **Order records** 
+- [x] **Filter**, **Sort**, and **Search** operations
+- [x] **Pagination** 
+- [x] Export data to **CSV**(Table data) and **PDF**(Order invoice) files
+- [x] Pleasant and consistent **UI/UX**
 
 ## Tools and Technologies 🚀
 
@@ -35,10 +30,9 @@ It is designed to empower businesses in **managing** various aspects, including 
 ## Find Important Links  📚
 
 - [Setup Guide](./docs/SETUP.md)
-- [Frontend README](./client/README.md)
-- [Backend README](./server/README.md)
+- [Frontend README](./docs/FRONTEND.md)
 - [API Documentation](./docs/API.md)
-- [Database Schema](./docs/SCHEMA.md)
+- [Ideation README](./docs/IDEATION.md)
 
 ## Best Practices
 

@@ -10,7 +10,7 @@ function IncomeExpenseChart() {
     title: {
       text: null
     },
-    colors: ['#87C4FF', '#39A7FF'],
+    colors: ['#ED7D31', '#FFB000'],
     xAxis: {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
     },
@@ -46,7 +46,7 @@ function IncomeExpenseChart() {
   };
 
   return (
-    <div className=''>
+    <div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
