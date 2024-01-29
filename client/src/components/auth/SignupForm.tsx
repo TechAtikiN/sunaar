@@ -40,8 +40,8 @@ const SignupForm = () => {
 
   const createUser = async (formData: FormData) => {
     try {
-      const user = await register(formData)
-      if (user) {
+      const status = await register(formData)
+      if (status) {
         toast({
           title: "Account created.",
           description: "We've created your account for you.",

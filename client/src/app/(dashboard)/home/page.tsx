@@ -1,5 +1,7 @@
 // named imports
 import { getDashboardData } from '@/actions/home'
+import { authenticate } from '@/actions/auth'
+import { redirect } from 'next/navigation'
 
 // default imports
 import IncomeExpenseChart from '@/components/home/IncomeExpenseChart'
@@ -10,6 +12,12 @@ import CustomerAnalytics from '@/components/home/CustomerAnalytics'
 import RecentOrders from '@/components/home/RecentOrders'
 
 export default async function HomePage() {
+  // redirect to login if user is not authenticated
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
+
   const data = await getDashboardData()
 
   return (

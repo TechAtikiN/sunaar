@@ -1,7 +1,16 @@
+// named imports
+import { authenticate } from '@/actions/auth'
+import { redirect } from 'next/navigation'
+
 // default imports
 import CreateCustomerForm from '@/components/customers/CreateCustomerForm'
 
-export default function AddCustomerPage() {
+export default async function AddCustomerPage() {
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
+
   return (
     <div className='page'>
       <div>

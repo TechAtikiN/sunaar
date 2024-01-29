@@ -1,5 +1,7 @@
 // named imports
 import { formatQueryParam } from '@/lib/utils'
+import { redirect } from 'next/navigation'
+import { authenticate } from '@/actions/auth'
 
 // default imports
 import CustomerHeader from '@/components/customers/CustomerHeader'
@@ -18,6 +20,11 @@ export default async function CustomersPage({
   query = formatQueryParam(query)
   const currentPage = Number(searchParams?.page) || 1
   const limit = Number(searchParams?.limit) || 8
+
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
 
   return (
     <>

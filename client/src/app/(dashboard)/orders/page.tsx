@@ -1,5 +1,7 @@
 // named imports
 import { formatQueryParam } from '@/lib/utils'
+import { redirect } from 'next/navigation'
+import { authenticate } from '@/actions/auth'
 
 // default imports
 import PurchaseOrdersHeader from '@/components/orders/PurchaseOrdersHeader'
@@ -18,6 +20,11 @@ export default async function PurchaseOrders({
   query = formatQueryParam(query)
   const currentPage = Number(searchParams?.page) || 1
   const limit = Number(searchParams?.limit) || 7
+
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
 
   return (
     <div className='page h-screen'>

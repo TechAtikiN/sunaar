@@ -1,12 +1,20 @@
 // named imports
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { redirect } from 'next/navigation'
+import { authenticate } from '@/actions/auth'
 import { getCustomerById } from '@/actions/customers'
 
 // default imports
 import CustomerOrderHistory from '@/components/customers/CustomerOrderHistory'
 
 export default async function CustomerDetails({ params }: { params: { customerId: string } }) {
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
+
   const customerDetails: CustomerDetails | undefined = await getCustomerById(params.customerId)
+
 
   return (
     <div className='page text-slate-600'>

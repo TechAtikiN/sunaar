@@ -46,11 +46,13 @@ type Customer = {
 type CustomerResponse = {
   customers: Customer[]
   hasMore: boolean
+  status: string
 } | undefined
 
 type CustomerDetails = {
   customer: Customer
   orders: Order[]
+  status: string
 }
 
 type OrderDetails = {

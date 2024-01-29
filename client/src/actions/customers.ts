@@ -15,8 +15,8 @@ export async function getAllCustomers(query: string, currentPage: number = 1, li
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const { customers, hasMore }: { customers: Customer[], hasMore: boolean } = await response.json()
-    const customerResponse = { customers, hasMore }
+    const { customers, hasMore, status }: { customers: Customer[], hasMore: boolean, status: string } = await response.json()
+    const customerResponse = { customers, hasMore, status }
     return customerResponse
   } catch (error) {
     console.log(error)
@@ -59,7 +59,7 @@ export async function getCustomerById(id: string) {
     })
     const { customer }  : {customer: Customer } = await response.json()
     
-    //get the orders associated with the customer
+    // get the orders associated with the customer
     const customerOrders = await fetch(`${BASE_URL}api/orders?customer_id=${id}`, {
       method: 'GET',
       headers: {
@@ -67,8 +67,8 @@ export async function getCustomerById(id: string) {
         'Authorization': `Bearer ${token?.value}`
       }
     })
-    const { orders }: { orders: Order[] } = await customerOrders.json()
-    const customerDetails = { customer, orders }
+    const { orders, status }: { orders: Order[], status: string } = await customerOrders.json()
+    const customerDetails = { customer, orders, status }
     return customerDetails
   } catch (error) {
     console.log(error)

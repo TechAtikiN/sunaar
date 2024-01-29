@@ -1,7 +1,15 @@
+// named imports
+import { authenticate } from '@/actions/auth'
+import { redirect } from 'next/navigation'
+
 // default imports
 import CreateOrder from '@/components/orders/CreateOrder'
 
-export default function CreateOrderPage() {
+export default async function CreateOrderPage() {
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
 
   return (
     <div className='page'>

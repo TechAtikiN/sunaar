@@ -1,5 +1,7 @@
 // named imports
 import { formatQueryParam } from '@/lib/utils'
+import { redirect } from 'next/navigation'
+import { authenticate } from '@/actions/auth'
 
 // default imports
 import ProductsListing from '@/components/product-catalogue/ProductsListing'
@@ -18,6 +20,11 @@ export default async function ProductCatalogue({
   const limit = Number(searchParams?.limit) || 8
   let category = searchParams?.category || ''
   category = formatQueryParam(category)
+
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
 
   return (
     <div className='page'>

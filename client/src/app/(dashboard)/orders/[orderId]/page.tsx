@@ -1,12 +1,19 @@
 // named imports
 import { getOrderById } from '@/actions/orders'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import { redirect } from 'next/navigation'
+import { authenticate } from '@/actions/auth'
 
 // default imports
 import OrderDetailsSection from '@/components/orders/OrderDetailsSection'
 
 
 export default async function OrderDetails({ params }: { params: { orderId: string } }) {
+  const status = await authenticate()
+  if (status === 'fail') {
+    redirect('/login')
+  }
+
   const orderDetails: OrderDetails | undefined = await getOrderById(params.orderId)
 
   return (

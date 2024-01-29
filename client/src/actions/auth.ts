@@ -3,6 +3,7 @@
 // named imports
 import { BASE_URL } from '@/constants/urls'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export async function register(formData: FormData) {
   const name = formData.get('name')
@@ -52,11 +53,29 @@ export async function login(formData: FormData) {
     if (data.status === 'fail') {
       return new Error(data.message)
     } else {
-      const { token, status } = data
+      const { token } = data
       cookies().set('token', token)
       return token
     }
   } catch (error) {
       console.error(error)
+  }
+}
+
+export async function authenticate() {
+  const token = cookies().get('token')
+
+  try {
+    const response = await fetch(`${BASE_URL}api/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token?.value}`
+      }
+    })
+    const { status } = await response.json()
+    return status
+  } catch (error) {
+    console.error(error)
   }
 }
