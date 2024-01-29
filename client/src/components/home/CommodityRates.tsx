@@ -1,14 +1,14 @@
-import { CubeIcon, CurrencyRupeeIcon } from "@heroicons/react/20/solid"
-import { getRates } from "../../actions/getRates"
+import { CubeIcon, CurrencyRupeeIcon } from '@heroicons/react/20/solid'
+import { getRates } from '../../actions/getRates'
 
 async function CommodityRates() {
-  // const commodities = await getRates()
+  const commodities = await getRates()
 
   return (
     <div className='section col-span-2'>
 
       <div className='flex justify-center items-center space-x-3 mt-2'>
-        {/* {commodities.map((item, index) => (
+        {commodities.map((item, index) => (
           <div
             key={item.name}
             className='flex flex-col last:border-none border-r border-gray-400 px-5'
@@ -23,7 +23,7 @@ async function CommodityRates() {
               </div>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   )

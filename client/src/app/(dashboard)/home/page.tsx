@@ -42,7 +42,6 @@ export default async function HomePage() {
           </div>
         </div>
         <IncomeExpenseChart />
-
       </div>
 
       {/* Statewise Distrubution of Sales and Customers */}

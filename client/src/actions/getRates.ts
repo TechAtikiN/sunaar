@@ -28,20 +28,20 @@ export async function getRates() {
     let { price } = await response.json()
     price = ((Number(price) * usdRate) / 2.8).toFixed(2)
     
-    return price
+    return price 
   }
 
-  // const gold = await fetchRates(GOLD)
-  // const silver = await fetchRates(SILVER)
+  const gold = await fetchRates(GOLD)
+  const silver = await fetchRates(SILVER)
   
-  // return [ 
-  //   {
-  //     name: 'Gold',
-  //     price: gold
-  //   },
-  //   {
-  //     name: 'Silver',
-  //     price: silver
-  //   }
-  //  ]
+  return [ 
+    {
+      name: 'Gold',
+      price: gold
+    },
+    {
+      name: 'Silver',
+      price: silver
+    }
+   ]
 }

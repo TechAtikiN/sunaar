@@ -46,7 +46,7 @@ function IncomeExpenseChart() {
   };
 
   return (
-    <div>
+    <div className=''>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
