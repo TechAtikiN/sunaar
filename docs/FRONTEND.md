@@ -1,6 +1,17 @@
 # Sunaar Frontend
 
 <details>
+<summary>Landing Website</summary>
+
+#### Screenshots:
+
+![Dashboard](../docs/assets/landing-1.png)
+![Dashboard](../docs/assets/landing-2.png)
+
+</details>
+
+
+<details>
 <summary>Dashboard</summary>
 
 #### Features:
@@ -13,7 +24,7 @@
 
 #### Screenshots:
 
-<!-- ![Dashboard](../docs/assets/dashboard2.png) -->
+![Dashboard](../docs/assets/dashboard-1.png)
 ![Dashboard](../docs/assets/dashboard-2.png)
 
 </details>

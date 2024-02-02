@@ -18,13 +18,13 @@ export async function getRates() {
   const SILVER = 'XAG'
 
   const fetchRates = async (metal: string) => {
-    const response = await fetch(`${METAL_RATES_BASE_URL}/${metal}/USD/${formattedDate}`, {
+    const response = await fetch(`${METAL_RATES_BASE_URL}/${metal}/USD/20240201`, {
       headers: {
         'x-access-token': process.env.GOLD_PRICE_API_KEY?.toString() || '',
         'Content-Type': 'application/json'
       }
     })
-
+    
     let { price } = await response.json()
     price = ((Number(price) * usdRate) / 2.8).toFixed(2)
     
