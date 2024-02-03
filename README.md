@@ -28,11 +28,10 @@ Sunaar is a  **Full-stack**, **modern**, and **visually** captivating web app to
 - Deployment: Vercel
   
 ## Find Important Links  📚
-
-- [Setup Guide](./docs/SETUP.md)
+- [Sunaar - Blog Post](https://dev.to/nikitakhabya/sunaar-a-full-full-stack-project-35cf) 
 - [Frontend README](./docs/FRONTEND.md)
+- [Setup Guide](./docs/SETUP.md)
 - [API Documentation](./docs/API.md)
-- [Ideation README](./docs/IDEATION.md)
 
 ## Best Practices
 
